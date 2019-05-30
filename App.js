@@ -12,7 +12,7 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 import {ContactsCommunicator} from './ContactsCommunicator';
 
-let phoneContacts = 'inital value';
+let phoneContacts =0;
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
   android:
@@ -20,31 +20,11 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
-async function getPermission(){
-phoneContacts = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.READ_CONTACTS,{
-  'title':'Contacts',
-  'message':'This app would like to view your contacts.'
-}).then(()=>{
-  Contacts.getAll((contacts,err)=>{
-      if(err){
-          return err
-      }else {
-        console.log("PERMISSIONS HERE"+contacts)
-          Promise.resolve(contacts);
-      }
-  })
-})
-}
-
-getPermission().then(res=>{
-  console.log('RESPONSE!!!'+res);
-});
-
-
 Contacts.getAll((ERR,CONTACTS)=>{
   if(ERR){
     console.log(ERR);
   }else{
+    phoneContacts = CONTACTS.length;
     console.log(CONTACTS)
   }
 })
@@ -57,7 +37,7 @@ export default class App extends Component<Props> {
       <View style={styles.container}>
         <Text style={styles.welcome}>Welcome to React Native!</Text>
         <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{Object.keys(phoneContacts)}</Text>
+        <Text style={styles.instructions}>{phoneContacts}</Text>
       </View>
     );
   }
