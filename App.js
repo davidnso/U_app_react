@@ -1,18 +1,7 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
-import {PermissionsAndroid} from 'react-native';
+import React, { Component } from 'react';
+import { Platform, StyleSheet, Text, View, FlatList } from 'react-native';
 import Contacts from 'react-native-contacts';
-import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
-import {ContactsCommunicator} from './ContactsCommunicator';
 
-let phoneContacts =0;
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
   android:
@@ -20,25 +9,39 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
-Contacts.getAll((ERR,CONTACTS)=>{
-  if(ERR){
-    console.log(ERR);
-  }else{
-    phoneContacts = CONTACTS.length;
-    console.log(CONTACTS)
+export default class App extends Component {
+  state = {
+    contact: []
   }
-})
-console.log('These are contacts '+ JSON.stringify(phoneContacts));
 
-type Props = {};
-export default class App extends Component<Props> {
+  componentDidMount() {
+    this.getContact();
+  }
+
+  getContact() {
+    Contacts.checkPermission((error, res) => {
+      if (res === 'authorized') {
+        Contacts.getAll((err, contact) => this.setState({ contact }));
+      }
+    })
+  }
+  renderItem({ item, index }) {
+    const number = item.phoneNumbers.map((val, key) => { if (key === 0) return val.number }); //may be wrongly the save their name only without phonenumber so only i have show first element only
+    return (
+      <View style={{ flexDirection: 'row', width: '100%', padding: 10, justifyContent: 'space-between' }}>
+        <Text>{item.givenName} {item.middleName} {item.familyName}</Text>
+        <Text>{number}</Text>
+      </View>
+    );
+  }
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{phoneContacts}</Text>
-      </View>
+      <FlatList
+      style={{ width: '100%'}}
+        data={this.state.contact}
+        renderItem={(a) => this.renderItem(a)}
+        keyExtractor={(item, index) => index.toString()}
+      />
     );
   }
 }
