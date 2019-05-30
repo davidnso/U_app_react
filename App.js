@@ -6,6 +6,8 @@
  * @flow
  */
 
+import {PermissionsAndroid} from 'react-native';
+import Contacts from 'react-native-contacts';
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 
@@ -15,6 +17,18 @@ const instructions = Platform.select({
     'Double tap R on your keyboard to reload,\n' +
     'Shake or press menu button for dev menu',
 });
+PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.READ_CONTACTS,{
+  'title':'Contacts',
+  'message':'This app would like to view your contacts.'
+}).then(()=>{
+  Contacts.getAll((contacts,err)=>{
+      if(err){
+          return error
+      }else {
+          return contacts
+      }
+  })
+})
 
 type Props = {};
 export default class App extends Component<Props> {
