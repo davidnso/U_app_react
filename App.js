@@ -23,7 +23,7 @@ PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.READ_CONTACTS,{
 }).then(()=>{
   Contacts.getAll((contacts,err)=>{
       if(err){
-          return error
+          return err
       }else {
           return contacts
       }
