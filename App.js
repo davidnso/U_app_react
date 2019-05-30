@@ -10,14 +10,18 @@ import {PermissionsAndroid} from 'react-native';
 import Contacts from 'react-native-contacts';
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
+import {ContactsCommunicator} from './ContactsCommunicator';
 
+let phoneContacts = 'inital value';
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
   android:
     'Double tap R on your keyboard to reload,\n' +
     'Shake or press menu button for dev menu',
 });
-PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.READ_CONTACTS,{
+
+async function getPermission(){
+phoneContacts = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.READ_CONTACTS,{
   'title':'Contacts',
   'message':'This app would like to view your contacts.'
 }).then(()=>{
@@ -25,10 +29,26 @@ PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.READ_CONTACTS,{
       if(err){
           return err
       }else {
-          return contacts
+        console.log("PERMISSIONS HERE"+contacts)
+          Promise.resolve(contacts);
       }
   })
 })
+}
+
+getPermission().then(res=>{
+  console.log('RESPONSE!!!'+res);
+});
+
+
+Contacts.getAll((ERR,CONTACTS)=>{
+  if(ERR){
+    console.log(ERR);
+  }else{
+    console.log(CONTACTS)
+  }
+})
+console.log('These are contacts '+ JSON.stringify(phoneContacts));
 
 type Props = {};
 export default class App extends Component<Props> {
@@ -37,7 +57,7 @@ export default class App extends Component<Props> {
       <View style={styles.container}>
         <Text style={styles.welcome}>Welcome to React Native!</Text>
         <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
+        <Text style={styles.instructions}>{Object.keys(phoneContacts)}</Text>
       </View>
     );
   }
