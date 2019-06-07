@@ -4,8 +4,6 @@ import Contacts from 'react-native-contacts';
 
 
 //Component imports
-import ContactsScreen from './on-boarding-module/my-circle/ContactsScreen'
-import GetStartedScreen from './on-boarding-module/get-started/base-view'
 import { createAppContainer } from 'react-navigation';
 import {AppNavigator} from './on-boarding-module/navigator'
 

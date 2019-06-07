@@ -12,7 +12,6 @@ export default class GetStartedScreen extends Component{
         return (
             <View>
                 <Text>
-                    This is the Get Started Screen
                 </Text>
                 <View style={styles.container}>
                     <View style={styles.buttonWrapper} >

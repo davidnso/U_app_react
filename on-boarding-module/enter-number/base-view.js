@@ -5,6 +5,8 @@ import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 import RightButton from '../../resources/helper-components/right-arrow'
 export default class EnterNumber extends Component{
     render(){
+        state={
+        }
         ButtonWasPressed = ()=>{
             console.log('Button was pressed')
         }
@@ -20,8 +22,8 @@ export default class EnterNumber extends Component{
                 <TextInput style={styles.TextArea}>
 
                 </TextInput>
-                <TouchableOpacity activeOpacity={.8} underLayColor='grey' >
-                <View style={styles.buttonWrapper} onPress={()=> this.ButtonWasPressed()}>
+                <TouchableOpacity activeOpacity={.6} underLayColor='grey' onPress={()=> this.props.navigation.navigate('StepThree')}>
+                <View style={styles.buttonWrapper}>
                 <RightButton text="this is it"></RightButton>
                 </View>
                 </TouchableOpacity>
