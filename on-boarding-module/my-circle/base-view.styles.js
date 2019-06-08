@@ -8,6 +8,11 @@ export const styles = StyleSheet.create({
         alignSelf: 'center',
         marginLeft: 40,
     },
+    contactScreenWrapper: {
+        zIndex: 0,
+        height: '80%',
+
+    },
     contactCard:{
         marginTop:10,
         marginLeft: 10,
@@ -17,6 +22,7 @@ export const styles = StyleSheet.create({
     image:{
         width: 65,
         height: 65,
+        borderRadius: 100,
         marginLeft:5,
         paddingRight:5,
     },
@@ -26,7 +32,7 @@ export const styles = StyleSheet.create({
         width: 370,
         height: 45,
         backgroundColor: '#F8F8F8',
-        borderRadius: 10
+        borderRadius: 10,
     },
     counterText:{
         alignSelf: 'center',
@@ -34,12 +40,14 @@ export const styles = StyleSheet.create({
         color: OnBoardingColors.MAIN_TEXT_GREEN,
         fontSize: FONT.SIZE,
         fontFamily: FONT.FAMILY,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
     },
     buttonWrapper:{
         alignSelf: 'flex-end',
+        bottom: 85,
         height: 100,
         width: 100,
+        zIndex: 5,
     },
     selectedIcon: {
         alignSelf: 'center',
