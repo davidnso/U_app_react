@@ -15,8 +15,10 @@ export default class ContactScreen extends Component {
   state = {
     contactSelected: 0,
     contacts: [],
-    isHidden: true,
-    friends: []
+    stage: 'family ',
+    friends: [],
+    family:[],
+    acquaintances: []
   };
   getContacts() {
     Contacts.checkPermission((error, res) => {
@@ -31,6 +33,19 @@ export default class ContactScreen extends Component {
         });
       }
     });
+  }
+
+  addContactsToList(){
+    let friendsList = [];
+    let remainingContacts = [];
+    this.state.contacts.map(contact=>{
+        if(contact.isVisible === true){
+            friendsList.push(contact)
+        }else{
+            remainingContacts.push(contact);
+        }
+    })
+    this.setState({contacts:remainingContacts, stage: 'friends '})
   }
   toggleHidden(index) {
     let contact = [...this.state.contacts];
@@ -60,19 +75,19 @@ export default class ContactScreen extends Component {
         return val.number;
 
       });
-      url = require('../../resources/img/profilePlaceHolder.png')
+
       if(contact.hasThumbnail){
           uriObj = {uri:contact.thumbnailPath}
       }else{
           uriObj = require('../../resources/img/profilePlaceHolder.png')
       }
       return (
-        <TouchableOpacity
+        <TouchableOpacity key={contact.rawContactId}
           onPress={() => {
             this.toggleHidden(index);
           }}
         >
-          <View key={contact.phoneNumbers[0].id} style={styles.contactCard}>
+          <View style={styles.contactCard}>
             <Image
               style={styles.image}
               source={ uriObj}
@@ -94,15 +109,15 @@ export default class ContactScreen extends Component {
   render() {
     return (
       <View >
-        <Text style={styles.counterText}>
-          {this.state.contactSelected} friends
+        <Text style={styles.counterText} > {this.state.stage}
+          {this.state.contactSelected}
         </Text>
         <TextInput style={styles.searchBox}> </TextInput>
         <ScrollView showsVerticalScrollIndicator={false} style={styles.contactScreenWrapper}>
           {this.renderList()}
         </ScrollView>
-        <View style={styles.buttonWrapper}>
-        <TouchableOpacity activeOpacity={0.7} >
+        <View style={styles.buttonWrapper} >
+        <TouchableOpacity activeOpacity={0.7} onPress={()=> {this.addContactsToList();}} >
             <RightButton />
         </TouchableOpacity>
         </View>
