@@ -17,9 +17,30 @@ export default class ContactScreen extends Component {
     contacts: [],
     stage: 'family ',
     friends: [],
+    friends_count: 0,
     family:[],
+    familyCount:0,
     acquaintances: []
   };
+
+  render() {
+    return (
+      <View >
+        <Text style={styles.counterText} > {this.state.stage}
+          {this.state.contactSelected}
+        </Text>
+        <TextInput style={styles.searchBox}> </TextInput>
+        <ScrollView showsVerticalScrollIndicator={false} style={styles.contactScreenWrapper}>
+          {this.renderList()}
+        </ScrollView>
+        <View style={styles.buttonWrapper} >
+        <TouchableOpacity activeOpacity={0.7} onPress={()=> {this.addContactsToList() }} >
+            <RightButton />
+        </TouchableOpacity>
+        </View>
+      </View>
+    );
+  }
   getContacts() {
     Contacts.checkPermission((error, res) => {
       if (res === "authorized") {
@@ -37,7 +58,10 @@ export default class ContactScreen extends Component {
 
   addContactsToList(){
     let friendsList = [];
+    let familyList = []
     let remainingContacts = [];
+    if(this.state.stage.trimRight()==='friends'){
+
     this.state.contacts.map(contact=>{
         if(contact.isVisible === true){
             friendsList.push(contact)
@@ -45,7 +69,20 @@ export default class ContactScreen extends Component {
             remainingContacts.push(contact);
         }
     })
-    this.setState({contacts:remainingContacts, stage: 'friends '})
+    this.props.navigation.navigate('StepFive');
+  }
+  if(this.state.stage.trimRight()==='family'){
+    this.setState({ stage: 'friends '})
+    this.state.contacts.map(contact=>{
+      if(contact.isVisible === true){
+          familyList.push(contact)
+      }else{
+          remainingContacts.push(contact);
+      }
+  })
+  }
+    this.setState({contacts:remainingContacts})
+
   }
   toggleHidden(index) {
     let contact = [...this.state.contacts];
@@ -105,24 +142,5 @@ export default class ContactScreen extends Component {
         </TouchableOpacity>
       );
     });
-
-  render() {
-    return (
-      <View >
-        <Text style={styles.counterText} > {this.state.stage}
-          {this.state.contactSelected}
-        </Text>
-        <TextInput style={styles.searchBox}> </TextInput>
-        <ScrollView showsVerticalScrollIndicator={false} style={styles.contactScreenWrapper}>
-          {this.renderList()}
-        </ScrollView>
-        <View style={styles.buttonWrapper} >
-        <TouchableOpacity activeOpacity={0.7} onPress={()=> {this.addContactsToList();}} >
-            <RightButton />
-        </TouchableOpacity>
-        </View>
-      </View>
-    );
-  }
 
 }

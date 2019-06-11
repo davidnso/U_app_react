@@ -22,7 +22,7 @@ export default class EnterNumber extends Component{
                 <TextInput style={styles.TextArea}>
 
                 </TextInput>
-                <TouchableOpacity activeOpacity={.5} onPress={()=> this.props.navigation.navigate('StepThree')}>
+                <TouchableOpacity activeOpacity={.5} onPress={()=> this.props.navigation.navigate('Filler')}>
                 <View style={styles.buttonWrapper}>
                 <RightButton text="this is it"></RightButton>
                 </View>
