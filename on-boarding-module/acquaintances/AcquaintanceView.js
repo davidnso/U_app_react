@@ -7,24 +7,29 @@ import {
   TouchableOpacity,
   ScrollView
 } from "react-native";
-import {Driver} from '../datastore/driver'
-import {AsyncStorage} from 'react-native';
 import Contacts from "react-native-contacts";
-import { styles } from "./base-view.styles";
+import { styles } from "./AcquaintanceView.styles";
 import { TextInput } from "react-native-gesture-handler";
 import RightButton from "../../resources/helper-components/right-arrow";
+import {Driver} from '../datastore/driver'
 export default class ContactScreen extends Component {
+
+MapAcquaintanceToObjectKeys(){
+
+}
   state = {
     contactSelected: 0,
     contacts: [],
-    stage: 'family ',
+    stage: this.props.acquaintance[0].key,
     friends: [],
-    friends_count: 0,
+    AcquaintanceCount: 0,
     family:[],
     familyCount:0,
     acquaintances: []
   };
 
+componentDidMount(){
+}
   render() {
     return (
       <View >
@@ -43,20 +48,6 @@ export default class ContactScreen extends Component {
       </View>
     );
   }
-  getContacts() {
-    Contacts.checkPermission((error, res) => {
-      if (res === "authorized") {
-        Contacts.getAll((err, contact) => {
-          const contactObject = contact.map(x => {
-            console.log(x.phoneNumbers[0]);
-            return { ...x, isVisible: false };
-          });
-          this.setState({ contacts: contactObject });
-          console.log(this.state.contacts[0]);
-        });
-      }
-    });
-  }
 
   addContactsToList(){
     let friendsList = [];
@@ -71,9 +62,6 @@ export default class ContactScreen extends Component {
             remainingContacts.push(contact);
         }
     })
-    this.addBulkContactsToStore(remainingContacts).then(res=>{
-      console.log(res);
-    });
     this.props.navigation.navigate('StepFive');
   }
   if(this.state.stage.trimRight()==='family'){
@@ -106,21 +94,6 @@ export default class ContactScreen extends Component {
     }
     console.log(this.state.contactSelected);
   }
-  async addBulkContactsToStore(contacts){
-    try{
-     contacts.forEach(contact => {
-         //TODO: Create function to parse unnecessary contact information from incoming objects.
-         let sanitizedObject = JSON.stringify(contact)
-         AsyncStorage.setItem(contact.rawContactId, sanitizedObject, (error)=>{
-             console.log('Error on bulk add:' + error);
-         })
-         console.log('contacts successfully YEA\'D BABY')
-     });
-    }
-    catch(error){
-     console.log(error);
-    }
- }
 
   componentWillMount() {
     this.getContacts();
