@@ -15,12 +15,15 @@ export default class filler extends Component{
     }
     render(){
         return(<View>
-            <TouchableOpacity onPress={()=> this.props.navigation.navigate('StepThree')}>
+
             <View>
                 <Text style={styles.text}> Now, It's time to fill your circle with family and friends, </Text>
                 <Text style ={styles.subtext}> Don't be too generous...</Text>
-            </View>
+            <TouchableOpacity style={styles.buttonWrapper} onPress={()=> this.props.navigation.navigate('StepThree')}>
+            <Image style={styles.imageStyles} source={require('../resources/img/blankArrow.png')}></Image>
             </TouchableOpacity>
+            </View>
+
             </View>
         )
     }

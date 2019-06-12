@@ -8,7 +8,8 @@ export const styles = StyleSheet.create({
         alignSelf: 'center',
         textAlign: 'center',
         marginBottom: 20,
-        top: 350,
+        padding: 10,
+        top: 280,
         left: 'auto'
     },
     subtext: {
@@ -18,5 +19,16 @@ export const styles = StyleSheet.create({
         textAlign: 'center',
         top: 310,
         left: 'auto'
-    }
+    },
+    buttonWrapper:{
+        height: 100,
+        width: 100,
+        marginTop: 330,
+        alignSelf: 'center',
+        left: 'auto'
+    },
+    imageStyles:{
+        height:80,
+        width:80
+    },
 })

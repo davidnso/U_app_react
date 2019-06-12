@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, Image} from 'react-native';
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
-import RightButton from '../../resources/helper-components/right-arrow'
+import RightButton from '../../../../resources/helper-components/right-arrow'
 import {styles} from './SelectView.styles'
 
 export default class SelectView extends Component{
@@ -14,11 +14,12 @@ export default class SelectView extends Component{
         {name: 'Networking', key: 'N1', isSelected: false},
         {name: 'Administrative', key: 'A2', isSelected: false},
         {name: 'Social Media', key: 'SM2', isSelected: false},
-        {name: 'Unnecessary', key: 'U1', isSelected: false}]
+        {name: 'Unnecessary', key: 'U1', isSelected: false}],
+        selected: 0,
     }
     render(){
         return(
-            <View>
+            <View style={styles.componentWrapper}>
                 <View>
                     <Text style={styles.Title}>
                        Time to choose Acquaintances
@@ -29,16 +30,20 @@ export default class SelectView extends Component{
                     <View>
                     {this.renderAcquaintances()}
                     </View>
-
                 </View>
+                <TouchableOpacity activeOpacity={.6} style={styles.buttonWrapper} onPress={()=> this.props.navigation.navigate('AcquaintanceStepOne')}>
+                <View>
+                    <RightButton/>
+                </View>
+                    </TouchableOpacity>
             </View>
         )
     }
 
     renderAcquaintances = ()=> this.state.Acquaintance.map((acquaintance,index) =>{
             return(
-                <TouchableOpacity onPress={()=>{this.selectAcquaintanceGroup(index)}}>
-                <View>
+                <TouchableOpacity key={acquaintance.key} onPress={()=>{this.selectAcquaintanceGroup(index)}}>
+                <View >
                     <Text style={styles.Acquaintances}>{acquaintance.name}</Text>
             {acquaintance.isSelected && (
               <View
@@ -50,8 +55,16 @@ export default class SelectView extends Component{
             )
         })
     selectAcquaintanceGroup(index){
+         selected = this.state.selected;
         Acquaintances = this.state.Acquaintance;
-        Acquaintances[index].isSelected = true;
+       if(!Acquaintances[index].isSelected && selected<=3){
+           Acquaintances[index].isSelected = true;
+           selected++}
+           else{
+            Acquaintances[index].isSelected = false;
+            selected--;
+           }
+           this.setState({selected})
         this.setState({Acquaintance:Acquaintances});
     }
 }
