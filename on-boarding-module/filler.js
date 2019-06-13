@@ -10,8 +10,8 @@ import {
 import {styles} from './filler.styles';
 
 export default class filler extends Component{
-    state={
-        timePassed: false,
+    constructor(props){
+        super(props)
     }
     render(){
         return(<View>

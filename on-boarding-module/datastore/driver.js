@@ -1,8 +1,9 @@
 import {AsyncStorage} from 'react-native'
 
-export class Driver{
+export default class Driver{
 
     async addContactToStore(contacts){
+    
     }
     async addBulkContactsToStore(contacts){
        try{
@@ -10,7 +11,7 @@ export class Driver{
             //TODO: Create function to parse unnecessary contact information from incoming objects.
             let sanitizedObject = JSON.stringify(contact)
             AsyncStorage.setItem(contact.rawContactId, sanitizedObject, (error)=>{
-                console.log('Error on bulk add:' + error);
+                console.log('Error on bulk add:' + error);s
             })
             console.log('contacts successfully YEA\'D BABY')
         });
@@ -41,4 +42,4 @@ export class Driver{
     }
 }
 
-module.exports = Driver;
+

@@ -71,10 +71,7 @@ export default class ContactScreen extends Component {
             remainingContacts.push(contact);
         }
     })
-    this.addBulkContactsToStore(remainingContacts).then(res=>{
-      console.log(res);
-    });
-    this.props.navigation.navigate('StepFive');
+    this.props.navigation.navigate('StepFive' , {contacts: remainingContacts});
   }
   if(this.state.stage.trimRight()==='family'){
     this.setState({ stage: 'friends '})
@@ -112,7 +109,7 @@ export default class ContactScreen extends Component {
          //TODO: Create function to parse unnecessary contact information from incoming objects.
          let sanitizedObject = JSON.stringify(contact)
          AsyncStorage.setItem(contact.rawContactId, sanitizedObject, (error)=>{
-             console.log('Error on bulk add:' + error);
+           if(error){ console.log('Error on bulk add:' + error);}
          })
          console.log('contacts successfully YEA\'D BABY')
      });

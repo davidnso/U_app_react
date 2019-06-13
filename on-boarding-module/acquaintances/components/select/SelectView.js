@@ -5,18 +5,24 @@ import RightButton from '../../../../resources/helper-components/right-arrow'
 import {styles} from './SelectView.styles'
 
 export default class SelectView extends Component{
-    state = {
-      Acquaintance:[
-        {name: 'Business', key: 'B1',isSelected: false},
-        {name: 'School', key: 'S1', isSelected: false},
-        {name: 'Professional', key: 'P1', isSelected: false},
-        {name: 'Arts', key: 'A1', isSelected: false},
-        {name: 'Networking', key: 'N1', isSelected: false},
-        {name: 'Administrative', key: 'A2', isSelected: false},
-        {name: 'Social Media', key: 'SM2', isSelected: false},
-        {name: 'Unnecessary', key: 'U1', isSelected: false}],
-        selected: 0,
+    constructor(props){
+        super(props)
+        this.state = {
+            Acquaintance:[
+              {name: 'Business', key: 'B1',isSelected: false},
+              {name: 'School', key: 'S1', isSelected: false},
+              {name: 'Professional', key: 'P1', isSelected: false},
+              {name: 'Arts', key: 'A1', isSelected: false},
+              {name: 'Networking', key: 'N1', isSelected: false},
+              {name: 'Administrative', key: 'A2', isSelected: false},
+              {name: 'Social Media', key: 'SM2', isSelected: false},
+              {name: 'Unnecessary', key: 'U1', isSelected: false}],
+              contacts: this.props.navigation.state.params.contacts,
+              selectedAcquaintanceGroups: [],
+              selected: 0,
+          }
     }
+
     render(){
         return(
             <View style={styles.componentWrapper}>
@@ -31,11 +37,11 @@ export default class SelectView extends Component{
                     {this.renderAcquaintances()}
                     </View>
                 </View>
-                <TouchableOpacity activeOpacity={.6} style={styles.buttonWrapper} onPress={()=> this.props.navigation.navigate('AcquaintanceStepOne')}>
-                <View>
-                    <RightButton/>
-                </View>
+                <View style={styles.buttonWrapper}>
+                    <TouchableOpacity activeOpacity={.6}  onPress={()=> this.storeAcquaintanceGroupsAndNavigate()}>
+                        <RightButton/>
                     </TouchableOpacity>
+                </View>
             </View>
         )
     }
@@ -65,6 +71,18 @@ export default class SelectView extends Component{
             selected--;
            }
            this.setState({selected})
+           console.log(this.state.contacts);
         this.setState({Acquaintance:Acquaintances});
+    }
+    storeAcquaintanceGroupsAndNavigate(){
+        selectedGroups =[];
+        this.state.Acquaintance.map(group=>{
+            if(group.isSelected){
+                selectedGroups.push(group);
+            }
+        })
+        console.log(selectedGroups);
+        this.setState({selectedAcquaintanceGroups: selectedGroups});
+        this.props.navigation.navigate('AcquaintanceStepOne', {contacts:this.state.contacts, Acquaintances: selectedGroups})
     }
 }
