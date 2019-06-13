@@ -97,6 +97,7 @@ componentDidMount(){
         }
     })
     //NAVIGATE
+    this.props.navigation.navigate('complete');
   }
     this.setState({contacts:remainingContacts})
 
