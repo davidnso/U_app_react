@@ -8,7 +8,7 @@ import {
   ScrollView
 } from "react-native";
 import {Driver} from '../datastore/driver'
-import {AsyncStorage} from 'react-native';
+import {AsyncStorage, PermissionsAndroid} from 'react-native';
 import Contacts from "react-native-contacts";
 import { styles } from "./base-view.styles";
 import { TextInput } from "react-native-gesture-handler";
@@ -24,6 +24,16 @@ export default class ContactScreen extends Component {
     familyCount:0,
     acquaintances: []
   };
+
+  async componentWillMount() {
+    try{
+      await this.checkPermission()
+     }catch(err){
+         console.log(err)
+         alert('Error granting Permissions.' )
+     }
+
+  }
 
   render() {
     return (
@@ -43,9 +53,24 @@ export default class ContactScreen extends Component {
       </View>
     );
   }
+async askForPermissions(){
+  try{
+    const granted = await PermissionsAndroid.request(
+      PermissionsAndroid.PERMISSIONS.READ_CONTACTS,{
+        'title': 'Contacts Permission',
+        'message': 'U app needs access to your contacts'
+      }
+    )
+    if(granted === PermissionsAndroid.RESULTS.GRANTED){
+      alert('Thank you!!');
+      return granted
+    }
+  }catch(err){
+
+  }
+}
+
   getContacts() {
-    Contacts.checkPermission((error, res) => {
-      if (res === "authorized") {
         Contacts.getAll((err, contact) => {
           const contactObject = contact.map(x => {
             console.log(x.phoneNumbers[0]);
@@ -54,8 +79,20 @@ export default class ContactScreen extends Component {
           this.setState({ contacts: contactObject });
           console.log(this.state.contacts[0]);
         });
-      }
-    });
+  }
+ async checkPermission() {
+   await Contacts.checkPermission(async(error,result)=>{
+    let decision;
+    if(result === 'denied' || result === 'undefined'){
+     decision = await this.askForPermissions();
+
+    }
+    if(decision === PermissionsAndroid.RESULTS.GRANTED || result === 'authorized'){
+      console.log('DID WE GET PERMISSION' + decision? decision : result);
+      this.getContacts();
+    }
+  })
+
   }
 
   addContactsToList(){
@@ -118,10 +155,6 @@ export default class ContactScreen extends Component {
      console.log(error);
     }
  }
-
-  componentWillMount() {
-    this.getContacts();
-  }
 
   renderList = () =>
     this.state.contacts.map((contact, index) => {
