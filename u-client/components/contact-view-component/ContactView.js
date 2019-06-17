@@ -1,11 +1,11 @@
 import React, {Component} from 'react'
 import {View, Text, Image, Button} from 'react-native'
 
-export default class NavBar extends Component{
+export default class ContactsView extends Component{
     render(){
         return(
         <View>
-            <Text>Navbar!!!</Text>
+            <Text>Contacts line!!!</Text>
         </View>)
     }
 }
