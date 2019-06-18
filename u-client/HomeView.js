@@ -1,8 +1,9 @@
 import React, {Component} from 'react'
 import {View, Text, Image, Button} from 'react-native'
-import NavBar from './components/nav-bar-component';
-import StatsView from './components/stats-component';
-import ContactView from './components/contact-view-component';
+import NavBar from './components/nav-bar-component/NavBar';
+import StatsView from './components/stats-component/StatsView';
+import ContactView from './components/contact-view-component/ContactView';
+import ReminderDrawer from './components/reminder-drawer-component/ReminderDrawer'
 export default class HomeView extends Component{
     render(){
         return(
@@ -10,6 +11,7 @@ export default class HomeView extends Component{
             <NavBar/>
             <StatsView/>
             <ContactView/>
+            <ReminderDrawer/>
         </View>)
     }
 }
