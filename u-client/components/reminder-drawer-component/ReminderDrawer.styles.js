@@ -3,7 +3,7 @@ import {StyleSheet} from 'react-native'
 export const styles = StyleSheet.create({
     contactImageView:{
         width: '100%',
-        height: '63%',
+        height: '70%',
         backgroundColor: 'grey'
     },
     reminderContainer:{

@@ -10,7 +10,6 @@ export default class HomeView extends Component{
         <View>
             <NavBar/>
             <StatsView/>
-            <ContactView/>
             <ReminderDrawer/>
         </View>)
     }
