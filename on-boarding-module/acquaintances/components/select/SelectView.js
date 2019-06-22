@@ -5,7 +5,7 @@ import RightButton from '../../../../resources/helper-components/right-arrow'
 import {styles} from './SelectView.styles'
 
 export default class SelectView extends Component{
-    constructor(props){
+    constructor (props){
         super(props)
         this.state = {
             Acquaintance:[
