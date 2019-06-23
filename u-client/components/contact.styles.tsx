@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
         height: 30,
         borderRadius: 100,
     },
-    badgeWrapper:{ 
+    badgeWrapper:{
         width: 20,
         height: 20,
         position: 'absolute',
