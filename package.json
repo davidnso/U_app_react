@@ -16,7 +16,8 @@
     "react-native-linear-gradient": "^2.5.4",
     "react-native-navigation": "^2.21.0",
     "react-navigation": "^3.11.0",
-    "rn-sliding-up-panel": "^2.3.0"
+    "rn-sliding-up-panel": "^2.3.0",
+    "react-native-module-lib": "file:./module-lib"
   },
   "devDependencies": {
     "@babel/core": "7.4.5",

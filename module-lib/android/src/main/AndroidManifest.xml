@@ -1,0 +1,23 @@
+
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.reactlibrary">
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.SEND_SMS"/>
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+
+    <application>
+        <service
+            android:name=".SmsListener"
+            android:permission="android.permission.RECEIVE_SMS">
+            <intent-filter>
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+            </intent-filter>
+        </service>
+     <receiver android:name=".SmsListener">
+      <intent-filter android:priority="1000">
+         <action android:name="android.provider.Telephony.SMS_RECEIVED">
+         </action>
+      </intent-filter>
+      </receiver>
+    </application>
+</manifest>
