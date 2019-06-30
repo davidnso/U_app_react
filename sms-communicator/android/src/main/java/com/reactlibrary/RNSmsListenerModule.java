@@ -53,7 +53,7 @@ public class RNSmsListenerModule extends BroadcastReceiver {
     WritableNativeMap params = new WritableNativeMap();
     Log.e("NOTIFICATION","HERE WE ARE!!!");
     params.putString("message:","THE USER WAS FOUND, HERE'S A NOTIFICATION");
-    ReactCommunicatorModule.sendEvent("messageReceived", params);
+    RNSmsCommunicatorModule.sendEvent("messageReceived", params);
 }
 
   @Override
