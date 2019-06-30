@@ -5,19 +5,36 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.Callback;
+import android.util.Log;
+import android.app.Activity;
+import android.content.Intent;
+import com.facebook.react.bridge.ReactApplicationContext;
+import com.facebook.react.ReactApplication;
+import com.facebook.react.bridge.Arguments;
+import com.facebook.react.bridge.ActivityEventListener;
+import com.facebook.react.bridge.ReactContextBaseJavaModule;
+import com.facebook.react.bridge.WritableNativeMap;
+import com.facebook.react.common.LifecycleState;
+import com.facebook.react.modules.core.DeviceEventManagerModule;
+import com.facebook.react.bridge.WritableMap;
+import com.facebook.react.bridge.ReactMethod;
+import com.facebook.react.bridge.Callback;
+import com.facebook.react.bridge.ReactContext;
+
+import java.util.Timer;
+import java.util.TimerTask;
+
 
 public class RNSmsCommunicatorModule extends ReactContextBaseJavaModule implements ActivityEventListener{
 
   private static final String TAG = "ReactCommunicator";
-  private final ReactApplicationContext reactContext;
-
-  public RNSmsCommunicatorModule(ReactApplicationContext reactContext) {
-    super(reactContext);
-    this.reactContext = reactContext;
-
+    private static ReactApplicationContext reactContext;
+    private String thisApp;
+  public RNSmsCommunicatorModule(ReactApplicationContext Context) {
+    super(Context);
     reactContext = Context;
 
-
+        WritableNativeMap params = new WritableNativeMap();
         reactContext.addActivityEventListener(this);
 
         params.putString("message:","THE USER WAS FOUND, HERE'S A NOTIFICATION");

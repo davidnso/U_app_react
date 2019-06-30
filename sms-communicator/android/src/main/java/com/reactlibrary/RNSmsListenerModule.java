@@ -1,4 +1,4 @@
-package main.java.com.reactlibrary;
+package com.reactlibrary;
 
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
@@ -20,11 +20,9 @@ import java.util.TimerTask;
 import android.content.SharedPreferences;
 public class RNSmsListenerModule extends BroadcastReceiver {
 
-  private final ReactApplicationContext reactContext;
-
   public RNSmsListenerModule(ReactApplicationContext reactContext) {
-    private static final String TAG = "RNSmsListener";
-    String msg,phoneNumber;
+      final String TAG = "RNSmsListener";
+      String msg,phoneNumber;
 
   }
   @Override
@@ -56,7 +54,6 @@ public class RNSmsListenerModule extends BroadcastReceiver {
     RNSmsCommunicatorModule.sendEvent("messageReceived", params);
 }
 
-  @Override
   public String getName() {
     return "RNSmsListener";
   }

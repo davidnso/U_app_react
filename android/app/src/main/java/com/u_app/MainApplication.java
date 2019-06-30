@@ -11,7 +11,7 @@ import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
 import com.rt2zz.reactnativecontacts.ReactNativeContacts;
 import com.BV.LinearGradient.LinearGradientPackage;
-import com.reactLibrary.RNSmsCommunicatorPackage;
+import com.reactlibrary.RNSmsCommunicatorPackage;
 import java.util.Arrays;
 import java.util.List;
 
