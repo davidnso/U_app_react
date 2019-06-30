@@ -10,7 +10,6 @@
     "react": "16.8.3",
     "react-native": "0.59.8",
     "react-native-contacts": "^4.0.2",
-    "react-native-draggable-view": "0.0.6",
     "react-native-gesture-handler": "^1.2.2",
     "react-native-linear-gradient": "^2.5.4",
     "react-navigation": "^3.11.0",

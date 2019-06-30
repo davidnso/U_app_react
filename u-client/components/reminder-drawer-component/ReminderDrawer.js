@@ -1,5 +1,4 @@
-import React, {Component} from 'react'
-import Drawer from 'react-native-draggable-view';
+import React, {Component} from 'react';
 import {
     AppRegistry,
     StyleSheet,
