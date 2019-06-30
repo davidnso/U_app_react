@@ -11,6 +11,7 @@ import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
 import com.rt2zz.reactnativecontacts.ReactNativeContacts;
 import com.BV.LinearGradient.LinearGradientPackage;
+import com.reactLibrary.RNSmsCommunicatorPackage;
 import java.util.Arrays;
 import java.util.List;
 
@@ -29,6 +30,7 @@ public class MainApplication extends Application implements ReactApplication {
             new ReactNativePushNotificationPackage(),
           new LinearGradientPackage(),
             new RNGestureHandlerPackage(),
+            new RNSmsCommunicatorPackage(),
           new ReactNativeContacts()
       );
     }

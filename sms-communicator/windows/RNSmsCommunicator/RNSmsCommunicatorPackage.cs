@@ -4,7 +4,7 @@ using ReactNative.UIManager;
 using System;
 using System.Collections.Generic;
 
-namespace React.Sms.Communicator.RNReactSmsCommunicator
+namespace Sms.Communicator.RNSmsCommunicator
 {
     /// <summary>
     /// Package defining core framework modules (e.g., <see cref="UIManagerModule"/>).
@@ -12,7 +12,7 @@ namespace React.Sms.Communicator.RNReactSmsCommunicator
     /// other framework parts (e.g., with the list of packages to load view
     /// managers from).
     /// </summary>
-    public class RNReactSmsCommunicatorPackage : IReactPackage
+    public class RNSmsCommunicatorPackage : IReactPackage
     {
         /// <summary>
         /// Creates the list of native modules to register with the react
@@ -24,7 +24,7 @@ namespace React.Sms.Communicator.RNReactSmsCommunicator
         {
             return new List<INativeModule>
             {
-                new RNReactSmsCommunicatorModule(),
+                new RNSmsCommunicatorModule(),
             };
         }
 

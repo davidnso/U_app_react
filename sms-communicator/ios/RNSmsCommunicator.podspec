@@ -1,18 +1,18 @@
 
 Pod::Spec.new do |s|
-  s.name         = "RNReactSmsCommunicator"
+  s.name         = "RNSmsCommunicator"
   s.version      = "1.0.0"
-  s.summary      = "RNReactSmsCommunicator"
+  s.summary      = "RNSmsCommunicator"
   s.description  = <<-DESC
-                  RNReactSmsCommunicator
+                  RNSmsCommunicator
                    DESC
   s.homepage     = ""
   s.license      = "MIT"
   # s.license      = { :type => "MIT", :file => "FILE_LICENSE" }
   s.author             = { "author" => "author@domain.cn" }
   s.platform     = :ios, "7.0"
-  s.source       = { :git => "https://github.com/author/RNReactSmsCommunicator.git", :tag => "master" }
-  s.source_files  = "RNReactSmsCommunicator/**/*.{h,m}"
+  s.source       = { :git => "https://github.com/author/RNSmsCommunicator.git", :tag => "master" }
+  s.source_files  = "RNSmsCommunicator/**/*.{h,m}"
   s.requires_arc = true
 
 

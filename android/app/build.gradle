@@ -148,6 +148,7 @@ dependencies {
     implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
     compile project(':react-native-linear-gradient')
     implementation "com.facebook.react:react-native:+"  // From node_modules
+    implementation project(':react-native-sms-communicator')
 }
 
 // Run this once to be able to run the application with BUCK

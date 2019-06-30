@@ -1,7 +1,7 @@
 
-#import "RNReactSmsCommunicator.h"
+#import "RNSmsCommunicator.h"
 
-@implementation RNReactSmsCommunicator
+@implementation RNSmsCommunicator
 
 - (dispatch_queue_t)methodQueue
 {

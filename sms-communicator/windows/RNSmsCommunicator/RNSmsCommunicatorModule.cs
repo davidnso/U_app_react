@@ -4,17 +4,17 @@ using System.Collections.Generic;
 using Windows.ApplicationModel.Core;
 using Windows.UI.Core;
 
-namespace React.Sms.Communicator.RNReactSmsCommunicator
+namespace Sms.Communicator.RNSmsCommunicator
 {
     /// <summary>
     /// A module that allows JS to share data.
     /// </summary>
-    class RNReactSmsCommunicatorModule : NativeModuleBase
+    class RNSmsCommunicatorModule : NativeModuleBase
     {
         /// <summary>
-        /// Instantiates the <see cref="RNReactSmsCommunicatorModule"/>.
+        /// Instantiates the <see cref="RNSmsCommunicatorModule"/>.
         /// </summary>
-        internal RNReactSmsCommunicatorModule()
+        internal RNSmsCommunicatorModule()
         {
 
         }
@@ -26,7 +26,7 @@ namespace React.Sms.Communicator.RNReactSmsCommunicator
         {
             get
             {
-                return "RNReactSmsCommunicator";
+                return "RNSmsCommunicator";
             }
         }
     }
