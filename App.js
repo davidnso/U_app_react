@@ -7,35 +7,24 @@ import * as Notifications from './u-client/push-notification';
 import { createAppContainer } from 'react-navigation';
 import {AppNavigator} from './on-boarding-module/navigator'
 import {ClientNavigator} from './u-client/navigator';
-
+import ReactSmsDriver from 'react-native-sms-communicator';
 const OnBoardingAppContainer = createAppContainer(AppNavigator);
 const MainAppContainer = createAppContainer(ClientNavigator);
 
+
 Notifications.configure();
+ReactSmsDriver.listenFor('message', (data)=>{
+  try{
+  console.log(JSON.stringify(data));
+  }catch(err){
+    console.log(err)
+  }
+})
 export default class App extends Component {
 
   render() {
     return<MainAppContainer/>
 
 
-}
-
-styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+  }
 }

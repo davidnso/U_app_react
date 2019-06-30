@@ -12,7 +12,7 @@
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
         </service>
-    <receiver android:name=".RNSmsListener">
+    <receiver android:name=".RNSmsListenerModule">
       <intent-filter android:priority="1000">
          <action android:name="android.provider.Telephony.SMS_RECEIVED">
          </action>

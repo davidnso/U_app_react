@@ -5,7 +5,7 @@ const { RNSmsCommunicatorPackage } = NativeModules;
 const eventsMap = {
     message: 'messageReceived'
 }
-const ReactSmsDriver = {}
+let ReactSmsDriver = {}
 
 ReactSmsDriver.listenFor = (event, callback)=>{
     const nativeEvent = eventsMap[event];

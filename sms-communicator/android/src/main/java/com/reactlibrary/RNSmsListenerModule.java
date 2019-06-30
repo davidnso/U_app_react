@@ -20,11 +20,9 @@ import java.util.TimerTask;
 import android.content.SharedPreferences;
 public class RNSmsListenerModule extends BroadcastReceiver {
 
-  public RNSmsListenerModule(ReactApplicationContext reactContext) {
       final String TAG = "RNSmsListener";
       String msg,phoneNumber;
 
-  }
   @Override
   public void onReceive(Context context, Intent intent){
         Log.e("Sms broadcast receiver Intent Received:" , intent.getAction());
@@ -41,7 +39,7 @@ public class RNSmsListenerModule extends BroadcastReceiver {
                     public void run() {
                         notification();
                     }
-                }, 100,1000000);
+                }, 100);
 
             }
         }
