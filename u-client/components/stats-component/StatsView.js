@@ -1,8 +1,16 @@
 import React, {Component} from 'react'
 import {View, Text, Image, Button} from 'react-native'
-import {styles} from './StatsView.styles'
+import {styles} from './StatsView.styles';
+import {localNotification} from '../../push-notification';
 export default class StatsView extends Component{
     render(){
+
+        const handleOnPress=()=>{
+            try{
+                localNotification();
+            }catch(err){
+                console.log('It did not work right')}
+        }
         return(
         <View style={styles.wrapper} >
             <Text style={styles.contactStats}>8{"\n"}Friends</Text>

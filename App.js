@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View, FlatList } from 'react-native';
 import Contacts from 'react-native-contacts';
-
+import * as Notifications from './u-client/push-notification';
 
 //Component imports
 import { createAppContainer } from 'react-navigation';
@@ -10,6 +10,8 @@ import {ClientNavigator} from './u-client/navigator';
 
 const OnBoardingAppContainer = createAppContainer(AppNavigator);
 const MainAppContainer = createAppContainer(ClientNavigator);
+
+Notifications.configure();
 export default class App extends Component {
 
   render() {
