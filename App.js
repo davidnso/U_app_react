@@ -15,7 +15,7 @@ const MainAppContainer = createAppContainer(ClientNavigator);
 Notifications.configure();
 ReactSmsDriver.listenFor('message', (data)=>{
   try{
-  console.log(JSON.stringify(data));
+  Notifications.localNotification();
   }catch(err){
     console.log(err)
   }
@@ -27,4 +27,4 @@ export default class App extends Component {
 
 
   }
-}
+} 
