@@ -30,7 +30,8 @@ export default class ReminderDrawer extends Component{
         return(
             //TODO: BUILD DRAWER COMPONENT
             //TODO: ADD WIDER BACKGROUND VIEW TO DRAWER SO THAT THE COMPONENT IS EASILY ACCESSIBLE.
-         <View style={styles.contactImageView}><ContactsView/>
+         <View style={styles.contactImageView}>
+             <ContactsView/>
             <SlidingUpPanel showBackdrop={false} height={400} draggableRange={{top:370,bottom:33}} containerStyle={styles.reminderContainer}ref={c=> this._panel = c}>
             <View style={styles.pullBar} ></View>
                     <Text style={styles.reminderTitle}>Reminders</Text>

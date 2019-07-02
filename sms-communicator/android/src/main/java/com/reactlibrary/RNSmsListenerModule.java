@@ -23,6 +23,7 @@ public class RNSmsListenerModule extends BroadcastReceiver {
       final String TAG = "RNSmsListener";
       String msg,phoneNumber;
 
+
   @Override
   public void onReceive(Context context, Intent intent){
         Log.e("Sms broadcast receiver Intent Received:" , intent.getAction());
@@ -34,22 +35,20 @@ public class RNSmsListenerModule extends BroadcastReceiver {
                 Log.i("PhoneNumber", phoneNumber);
 
                     Log.i("msg:", "is in my circle");
-                new Timer().schedule(new TimerTask() {
-                    @Override
-                    public void run() {
-                        notification();
-                    }
-                }, 100);
+                
 
             }
         }
   }
   public static void notification(){
-
+    try{
     WritableNativeMap params = new WritableNativeMap();
     Log.e("NOTIFICATION","HERE WE ARE!!!");
     params.putString("message:","THE USER WAS FOUND, HERE'S A NOTIFICATION");
     RNSmsCommunicatorModule.sendEvent("messageReceived", params);
+    }catch(Error err){
+        throw new Error("Notification could not be sent for contact " + err);
+    }
 }
 
   public String getName() {
