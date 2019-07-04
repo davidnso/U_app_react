@@ -1,25 +1,13 @@
 import {StyleSheet} from 'react-native'
-
 export const styles = StyleSheet.create({
-    wrapper:{
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginTop: 8,
-        height: 25,
-        width: '100%'
-    },
-    homeIcon:{
-        width: 24,
-        height: 24,
-        marginLeft: 5,
-    },
-    menuIcon:{
-        width: 24,
-        height: 24,
-        marginRight: 5
-    },
-    notificationIcon:{
-        width: 20,
-        height: 20
+    navbar:{
+        bottom:0,
+        position: 'absolute',
+        width: '100%',
+        backgroundColor: '#FFFFFF',
+        height: 37,
+        borderColor: '#FCF3F3',
+        borderWidth: .5,
+        elevation:3
     }
 })

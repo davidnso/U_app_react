@@ -12,14 +12,14 @@ const OnBoardingAppContainer = createAppContainer(AppNavigator);
 const MainAppContainer = createAppContainer(ClientNavigator);
 
 
-Notifications.configure();
-ReactSmsDriver.listenFor('message', (data)=>{
-  try{
-  Notifications.localNotification();
-  }catch(err){
-    console.log(err)
-  }
-})
+// Notifications.configure();
+// ReactSmsDriver.listenFor('message', (data)=>{
+//   try{
+//   Notifications.localNotification();
+//   }catch(err){
+//     console.log(err)
+//   }
+// })
 export default class App extends Component {
 
   render() {
