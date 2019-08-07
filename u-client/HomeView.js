@@ -8,6 +8,7 @@ import Recent from './components/contact-feed/components/most-recent-component/r
 import ContactCard from './components/contact-feed/components/contacts-component/components/contactCard';
 import ContactList from './components/contact-feed/components/contacts-component/contactList';
 import NavBar from './components/navbar-component/navBar';
+import FilterBar from './components/filter-component/filterBar';
 //import NavBar from './components/nav-bar-component/navBar';
 export default class HomeView extends Component{
     render(){
@@ -15,6 +16,7 @@ export default class HomeView extends Component{
    <View style={styles.screenWrapper}>
        <Banner/>
        <ScrollView showsHorizontalScrollIndicator={false}>
+       <FilterBar/>
         <Recent/>
        <ContactList/>
        </ScrollView>

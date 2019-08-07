@@ -52,5 +52,15 @@ export const styles = StyleSheet.create({
     message:{
         fontSize: 13,
         fontFamily: 'roboto',
+    },
+    messageModal:{
+        borderRadius: 20,
+        width: '87%',
+        height: '40%',
+        minHeight: 300,
+        maxHeight: '40%',
+        backgroundColor: '#FFFFFF',
+        alignSelf: 'center',
+
     }
 })
