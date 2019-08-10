@@ -15,7 +15,11 @@ export default class HomeView extends Component {
     return (
       <View style={styles.screenWrapper}>
         <Banner />
-        <ScrollView showsHorizontalScrollIndicator={false}>
+        <ScrollView
+          showsHorizontalScrollIndicator={false}
+          showsVerticalScrollIndicator={false}
+        >
+          <FilterBar />
           <Recent />
           <ContactList />
         </ScrollView>

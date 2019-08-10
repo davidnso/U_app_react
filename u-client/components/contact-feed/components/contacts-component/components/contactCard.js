@@ -15,6 +15,8 @@ import {
   TextInput
 } from "react-native-gesture-handler";
 import { styles } from "./contactCard.styles";
+import colors from "../../../../../../_styles";
+import LinearGradient from "react-native-linear-gradient";
 
 export default class ContactCard extends Component {
   state = {
@@ -81,7 +83,7 @@ export default class ContactCard extends Component {
     statusBarColor = "#C2C2C2";
     if (this.state.sam.isActive) {
       cardColor = "#F2F2F2";
-      status = "New Message";
+      status = "1";
       statusBarColor = "#0FD3DD";
     }
 
@@ -93,34 +95,59 @@ export default class ContactCard extends Component {
           }}
         >
           <Animated.View
-            style={[styles.container, { height: this.state.cardHeight }]}
+            style={[
+              styles.container,
+              { height: this.state.cardHeight, backgroundColor: cardColor }
+            ]}
           >
-            <Image
-              source={require("../../../../../../resources/img/briGreg.jpg")}
-              style={styles.contactPicture}
-            />
+            <View style={styles.status_image}>
+              {this.state.sam.isActive && (
+                <LinearGradient
+                  start={{ x: 0, y: 0.75 }}
+                  end={{ x: 1, y: 0.25 }}
+                  style={styles._status}
+                  colors={[
+                    "#10D5DD",
+                    "#0AC5E1",
+                    "#09B6E9",
+                    "#05A0F1",
+                    "#0087FC"
+                  ]}
+                >
+                  <Animated.Text
+                    style={[
+                      styles.statusText,
+                      { opacity: this.state.statusOpacity }
+                    ]}
+                  >
+                    {status}
+                  </Animated.Text>
+                </LinearGradient>
+              )}
+              {!this.state.sam.isActive && (
+                <View
+                  style={[styles._status, { backgroundColor: statusBarColor }]}
+                >
+                  <Animated.Text
+                    style={[
+                      styles.statusText,
+                      { opacity: this.state.statusOpacity }
+                    ]}
+                  >
+                    {status}
+                  </Animated.Text>
+                </View>
+              )}
+              <Image
+                source={require("../../../../../../resources/img/briGreg.jpg")}
+                style={styles.contactPicture}
+              />
+            </View>
+
             <View style={styles.infoWrapper}>
               <View style={styles.heading}>
                 <Text style={styles.name}>Sam</Text>
               </View>
-              <Animated.View
-                style={[
-                  styles.status,
-                  {
-                    backgroundColor: statusBarColor,
-                    width: this.state.statusBarWidth
-                  }
-                ]}
-              >
-                <Animated.Text
-                  style={[
-                    styles.statusText,
-                    { opacity: this.state.statusOpacity }
-                  ]}
-                >
-                  {status}
-                </Animated.Text>
-              </Animated.View>
               <View style={styles.messageContainer}>
                 {this.state.sam.isActive && (
                   <Animated.Text
@@ -138,7 +165,7 @@ export default class ContactCard extends Component {
             </View>
           </Animated.View>
         </TouchableOpacity>
-        {this.state.isSelected && (
+        {this.state.isSelected && this.state.sam.isActive && (
           <Animated.View
             style={{
               position: "absolute",
@@ -151,12 +178,13 @@ export default class ContactCard extends Component {
             }}
           >
             <TouchableOpacity
-              style={{ height: 20, backgroundColor: "blue", zIndex: 4 }}
+              style={[styles.button, { backgroundColor: colors.BUTTON_GRAY }]}
+              activeOpacity={0.6}
             >
-              <Text>Button here</Text>
+              <Text style={styles.buttonText}>Wait</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={{ height: 20 }}>
-              <Text>Button here</Text>
+            <TouchableOpacity style={styles.button} activeOpacity={0.6}>
+              <Text style={styles.buttonText}>Reply</Text>
             </TouchableOpacity>
           </Animated.View>
         )}

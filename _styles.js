@@ -1,0 +1,11 @@
+const colors = {
+  GRADIENT_BLUE: "#0291F9",
+  GRADIENT_TEAL: "#0ECFDF",
+  BUTTON_BLUE: "#018DF9",
+  BUTTON_GRAY: "#A5ABA9",
+  HEADER_GRAY: "#C2C2C2",
+  RECENT_MESSAGE_TEXT: "#656565",
+  DEFAULT_MESSAGE_TEXT: "#C2C2C2"
+};
+
+export default colors;
