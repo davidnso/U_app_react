@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { Text, View } from "react-native";
 
-export default class optionsDrawer {
+export default class settings extends Component {
   render() {
     return (
-      <View style={{ height: "100%", width: "50%" }}>
-        <Text>Settings</Text>
+      <View>
+        <Text> settings </Text>
       </View>
     );
   }

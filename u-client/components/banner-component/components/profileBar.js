@@ -17,7 +17,11 @@ export default class ProfileBar extends Component {
           />
         </View>
         <View style={{ position: "absolute", right: 15 }}>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              this.props.navigation.navigate("DrawerOpen");
+            }}
+          >
             <Image
               style={styles.manageIcon}
               source={require("../../../../resources/img/whitelist.png")}

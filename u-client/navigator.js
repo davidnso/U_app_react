@@ -1,23 +1,27 @@
-import { createStackNavigator, createDrawerNavigator } from "react-navigation";
+import {
+  createStackNavigator,
+  createDrawerNavigator,
+  DrawerNavigator
+} from "react-navigation";
 import HomeView from "./HomeView";
-import optionsDrawer from "./drawer";
-let ClientNavigator = createStackNavigator(
+import preferencesComponent from "./preferences";
+import manageComponent from "./manage";
+import settings from "./settings";
+import ReminderComponent from "./components/reminder";
+export const ClientNavigator = createDrawerNavigator(
   {
-    home: HomeView
+    Home: { screen: HomeView },
+    Reminders: { screen: ReminderComponent },
+    "My Circle": { screen: manageComponent },
+    Preferences: { screen: preferencesComponent },
+    Settings: { screen: settings }
   },
-  { headerMode: "none", initialRouteName: "home" }
-);
-
-ClientNavigator = createDrawerNavigator(
   {
-    home: HomeView,
-    options: optionsDrawer
-  },
-  {
-    hideStatusBar: true,
-    drawerBackgroundColor: "#FFFFF",
+    initialRouteName: "Home",
+    drawerPosition: "right",
+    hideStatusBar: false,
+    drawerWidth: 250,
+    drawerBackgroundColor: "#FFFFFF",
     overlayColor: "#C2C2C2"
   }
 );
-
-export { ClientNavigator };
