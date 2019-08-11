@@ -9,13 +9,8 @@ export const styles = StyleSheet.create({
     height: 37,
     alignContent: "center",
     flexDirection: "row",
+    paddingBottom: 15,
     justifyContent: "space-evenly"
-  },
-  iconWrapper: {
-    top: 5,
-    marginBottom: 15,
-    width: "40%",
-    alignSelf: "center"
   },
   icon: {
     alignSelf: "center",

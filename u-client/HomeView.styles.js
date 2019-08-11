@@ -47,14 +47,14 @@ export const styles = StyleSheet.create({
   },
   menuOption: {
     width: 115,
-    height: 116,
+    height: 123,
     borderRadius: 13,
     backgroundColor: "#ffff",
     textAlign: "center"
   },
   menuText: {
     position: "absolute",
-    bottom: 15,
+    bottom: 20,
     alignSelf: "center",
     color: "#C4C4C4",
     fontWeight: "200"

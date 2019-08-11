@@ -58,8 +58,8 @@ export default class HomeView extends Component {
           <View style={{ maxWidth: 100, alignSelf: "center", marginTop: 30 }}>
             <Image
               style={{
-                height: 90,
-                width: 90,
+                height: 80,
+                width: 80,
                 borderRadius: 100,
                 alignSelf: "center"
               }}
@@ -89,13 +89,13 @@ export default class HomeView extends Component {
               </Text>
             </View>
           </View>
-          <View style={{ marginTop: 30, marginLeft: 20 }}>
+          <View style={{ marginTop: 20, marginLeft: 20 }}>
             <Text
               style={{
-                left: 15,
-                color: "#E9E9E9",
+                left: 10,
+                color: "#ffff",
                 fontFamily: "roboto",
-                fontWeight: "200",
+                fontWeight: "100",
                 fontSize: 17,
                 textAlign: "left"
               }}
@@ -129,8 +129,13 @@ export default class HomeView extends Component {
                     this.props.navigation.navigate("Circle");
                   }}
                 >
-                  <View style={styles.menuOption} />
-                  <Text style={styles.menuText}>My Circle</Text>
+                  <View style={styles.menuOption}>
+                    <Image
+                      style={{ width: 80, height: 80, alignSelf: "center" }}
+                      source={require("../resources/img/My_circle.png")}
+                    />
+                    <Text style={styles.menuText}>My Circle</Text>
+                  </View>
                 </TouchableOpacity>
                 <TouchableOpacity
                   activeOpacity={0.5}
@@ -138,8 +143,18 @@ export default class HomeView extends Component {
                     this.props.navigation.navigate("Reminders");
                   }}
                 >
-                  <View style={styles.menuOption} />
-                  <Text style={styles.menuText}>Reminders</Text>
+                  <View style={styles.menuOption}>
+                    <Image
+                      style={{
+                        width: 45,
+                        height: 45,
+                        alignSelf: "center",
+                        marginTop: 20
+                      }}
+                      source={require("../resources/img/notificationIcon.png")}
+                    />
+                    <Text style={styles.menuText}>Reminders</Text>
+                  </View>
                 </TouchableOpacity>
               </View>
             </View>
@@ -159,8 +174,18 @@ export default class HomeView extends Component {
                     this.props.navigation.navigate("Preferences");
                   }}
                 >
-                  <View style={styles.menuOption} />
-                  <Text style={styles.menuText}>HouseKeeping</Text>
+                  <View style={styles.menuOption}>
+                    <Image
+                      style={{
+                        width: 45,
+                        height: 45,
+                        alignSelf: "center",
+                        marginTop: 20
+                      }}
+                      source={require("../resources/img/List.png")}
+                    />
+                    <Text style={styles.menuText}>HouseKeeping</Text>
+                  </View>
                 </TouchableOpacity>
                 <TouchableOpacity
                   activeOpacity={0.5}
@@ -168,8 +193,18 @@ export default class HomeView extends Component {
                     this.props.navigation.navigate("Settings");
                   }}
                 >
-                  <View style={styles.menuOption} />
-                  <Text style={styles.menuText}>Settings</Text>
+                  <View style={styles.menuOption}>
+                    <Image
+                      style={{
+                        width: 55,
+                        height: 55,
+                        alignSelf: "center",
+                        marginTop: 20
+                      }}
+                      source={require("../resources/img/Settings.png")}
+                    />
+                    <Text style={styles.menuText}>Settings</Text>
+                  </View>
                 </TouchableOpacity>
               </View>
             </View>
