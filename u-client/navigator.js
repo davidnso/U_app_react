@@ -13,7 +13,7 @@ export const ClientNavigator = createStackNavigator(
   {
     Home: { screen: HomeView },
     Reminders: { screen: ReminderComponent },
-    circle: { screen: ContactList },
+    Circle: { screen: ContactList },
     Preferences: { screen: preferencesComponent },
     Settings: { screen: settings }
   },

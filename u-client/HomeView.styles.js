@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
   },
   screenWrapper: {
     height: "100%",
-    backgroundColor: "#F9FBFC"
+    backgroundColor: "#05A0F1"
   },
   vectorImage: {
     width: "85%",

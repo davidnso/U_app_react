@@ -50,102 +50,132 @@ export default class HomeView extends Component {
   }
   render() {
     return (
-      <View style={styles.screenWrapper}>
-        <View style={{ maxWidth: 100, alignSelf: "center", marginTop: 30 }}>
-          <Image
-            style={{
-              height: 90,
-              width: 90,
-              borderRadius: 100,
-              alignSelf: "center"
-            }}
-            source={require("../resources/img/mee.jpeg")}
-          />
-          <View
-            style={{
-              position: "absolute",
-              right: -3,
-              borderRadius: 100,
-              width: 30,
-              height: 30,
-              backgroundColor: "#ffff",
-              alignItems: "center",
-              justifyContent: "center"
-            }}
-          >
+      <View>
+        <LinearGradient
+          style={styles.screenWrapper}
+          colors={["#73C1EB", "#5CBBEC", "#30ADEF", "#05A0F1", "#05A0F1"]}
+        >
+          <View style={{ maxWidth: 100, alignSelf: "center", marginTop: 30 }}>
+            <Image
+              style={{
+                height: 90,
+                width: 90,
+                borderRadius: 100,
+                alignSelf: "center"
+              }}
+              source={require("../resources/img/mee.jpeg")}
+            />
+            <View
+              style={{
+                position: "absolute",
+                right: -3,
+                borderRadius: 100,
+                width: 30,
+                height: 30,
+                backgroundColor: "#ffff",
+                alignItems: "center",
+                justifyContent: "center"
+              }}
+            >
+              <Text
+                style={{
+                  fontWeight: "bold",
+                  color: "#0FD2DD",
+                  fontSize: 17,
+                  fontFamily: "roboto"
+                }}
+              >
+                3
+              </Text>
+            </View>
+          </View>
+          <View style={{ marginTop: 30, marginLeft: 20 }}>
             <Text
               style={{
-                fontWeight: "bold",
-                color: "#0FD2DD",
+                left: 15,
+                color: "#E9E9E9",
+                fontFamily: "roboto",
+                fontWeight: "200",
                 fontSize: 17,
-                fontFamily: "roboto"
+                textAlign: "left"
               }}
             >
-              3
+              Most Recent
             </Text>
+            <Recent active={true} />
           </View>
-        </View>
-        <View style={{ marginTop: 30, marginLeft: 20 }}>
-          <Text
-            style={{
-              left: 15,
-              color: "#E9E9E9",
-              fontFamily: "roboto",
-              fontWeight: "200",
-              fontSize: 17,
-              textAlign: "left"
-            }}
-          >
-            Most Recent
-          </Text>
-          <Recent active={true} />
-        </View>
-        <View style={{ marginTop: 50 }}>
           <View
             style={{
-              flexDirection: "row",
-              justifyContent: "space-between",
-              width: "70%",
-              maxWidth: "70%",
-              alignSelf: "center"
+              backgroundColor: "#F9FBFC",
+              height: "100%",
+              marginTop: 30,
+              borderTopLeftRadius: 30,
+              borderTopRightRadius: 30
             }}
           >
-            <TouchableOpacity
-              activeOpacity={0.5}
-              onPress={() => {
-                this.props.navigation.navigate("circle");
-              }}
-            >
-              <View style={styles.menuOption} />
-              <Text style={styles.menuText}>My Circle</Text>
-            </TouchableOpacity>
-            <TouchableOpacity activeOpacity={0.5}>
-              <View style={styles.menuOption} />
-              <Text style={styles.menuText}>Reminders</Text>
-            </TouchableOpacity>
+            <View style={{ marginTop: 30 }}>
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  width: "70%",
+                  maxWidth: "70%",
+                  alignSelf: "center"
+                }}
+              >
+                <TouchableOpacity
+                  activeOpacity={0.5}
+                  onPress={() => {
+                    this.props.navigation.navigate("Circle");
+                  }}
+                >
+                  <View style={styles.menuOption} />
+                  <Text style={styles.menuText}>My Circle</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  activeOpacity={0.5}
+                  onPress={() => {
+                    this.props.navigation.navigate("Reminders");
+                  }}
+                >
+                  <View style={styles.menuOption} />
+                  <Text style={styles.menuText}>Reminders</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+            <View style={{ marginTop: 30 }}>
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  width: "70%",
+                  maxWidth: "70%",
+                  alignSelf: "center"
+                }}
+              >
+                <TouchableOpacity
+                  activeOpacity={0.5}
+                  onPress={() => {
+                    this.props.navigation.navigate("Preferences");
+                  }}
+                >
+                  <View style={styles.menuOption} />
+                  <Text style={styles.menuText}>HouseKeeping</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  activeOpacity={0.5}
+                  onPress={() => {
+                    this.props.navigation.navigate("Settings");
+                  }}
+                >
+                  <View style={styles.menuOption} />
+                  <Text style={styles.menuText}>Settings</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
           </View>
-        </View>
-        <View style={{ marginTop: 30 }}>
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "space-between",
-              width: "70%",
-              maxWidth: "70%",
-              alignSelf: "center"
-            }}
-          >
-            <TouchableOpacity activeOpacity={0.5}>
-              <View style={styles.menuOption} />
-              <Text style={styles.menuText}>HouseKeeping</Text>
-            </TouchableOpacity>
-            <TouchableOpacity activeOpacity={0.5}>
-              <View style={styles.menuOption} />
-              <Text style={styles.menuText}>Settings</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-        <NavBar />
+          <NavBar />
+        </LinearGradient>
       </View>
     );
   }
