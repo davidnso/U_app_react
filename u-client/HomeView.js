@@ -110,7 +110,12 @@ export default class HomeView extends Component {
               alignSelf: "center"
             }}
           >
-            <TouchableOpacity activeOpacity={0.5}>
+            <TouchableOpacity
+              activeOpacity={0.5}
+              onPress={() => {
+                this.props.navigation.navigate("circle");
+              }}
+            >
               <View style={styles.menuOption} />
               <Text style={styles.menuText}>My Circle</Text>
             </TouchableOpacity>
