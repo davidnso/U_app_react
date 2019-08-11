@@ -4,11 +4,11 @@ import {
   DrawerNavigator
 } from "react-navigation";
 import HomeView from "./HomeView";
-import preferencesComponent from "./preferences";
-import manageComponent from "./manage";
-import settings from "./settings";
-import ReminderComponent from "./components/reminder";
-import ContactList from "./components/contact-feed/components/contacts-component/contactList";
+import preferencesComponent from "./housekeeping/preferences";
+import manageComponent from "./mycircle/manage";
+import settings from "./settings/settings";
+import ReminderComponent from "./reminders/reminder";
+import ContactList from "./mycircle/contact-feed/components/contacts-component/contactList";
 export const ClientNavigator = createStackNavigator(
   {
     Home: { screen: HomeView },

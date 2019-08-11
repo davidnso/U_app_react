@@ -80,7 +80,7 @@ export default class ContactCard extends Component {
      */
     cardColor = "#FFFF";
     status = "Idle";
-    statusBarColor = "#C2C2C2";
+    statusBarColor = "#eeeeee";
     if (this.state.sam.isActive) {
       cardColor = "#F2F2F2";
       status = "1";

@@ -3,13 +3,11 @@ import { View, Text, Image, Button, StatusBar } from "react-native";
 import { styles } from "./HomeView.styles";
 import LinearGradient from "react-native-linear-gradient";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
-import Banner from "./components/banner-component/banner";
-import Recent from "./components/contact-feed/components/most-recent-component/recent";
-import ContactCard from "./components/contact-feed/components/contacts-component/components/contactCard";
-import ContactList from "./components/contact-feed/components/contacts-component/contactList";
+import Recent from "./mycircle/contact-feed/components/most-recent-component/recent";
+import ContactCard from "./mycircle/contact-feed/components/contacts-component/components/contactCard";
+import ContactList from "./mycircle/contact-feed/components/contacts-component/contactList";
 import NavBar from "./components/navbar-component/navBar";
 import FilterBar from "./components/filter-component/filterBar";
-import ViewToggle from "./components/banner-component/components/viewToggle";
 //import NavBar from './components/nav-bar-component/navBar';
 export default class HomeView extends Component {
   constructor(props) {
@@ -118,8 +116,8 @@ export default class HomeView extends Component {
                 style={{
                   flexDirection: "row",
                   justifyContent: "space-between",
-                  width: "70%",
-                  maxWidth: "70%",
+                  width: "75%",
+                  maxWidth: "75%",
                   alignSelf: "center"
                 }}
               >
