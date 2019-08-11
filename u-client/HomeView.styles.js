@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
   },
   screenWrapper: {
     height: "100%",
-    backgroundColor: "#FFFF"
+    backgroundColor: "#F9FBFC"
   },
   vectorImage: {
     width: "85%",
@@ -44,5 +44,19 @@ export const styles = StyleSheet.create({
   manageIcon: {
     width: 27,
     height: 27
+  },
+  menuOption: {
+    width: 115,
+    height: 116,
+    borderRadius: 13,
+    backgroundColor: "#ffff",
+    textAlign: "center"
+  },
+  menuText: {
+    position: "absolute",
+    bottom: 15,
+    alignSelf: "center",
+    color: "#C4C4C4",
+    fontWeight: "200"
   }
 });

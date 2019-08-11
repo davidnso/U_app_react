@@ -8,7 +8,7 @@ import preferencesComponent from "./preferences";
 import manageComponent from "./manage";
 import settings from "./settings";
 import ReminderComponent from "./components/reminder";
-export const ClientNavigator = createDrawerNavigator(
+export const ClientNavigator = createStackNavigator(
   {
     Home: { screen: HomeView },
     Reminders: { screen: ReminderComponent },
@@ -16,12 +16,5 @@ export const ClientNavigator = createDrawerNavigator(
     Preferences: { screen: preferencesComponent },
     Settings: { screen: settings }
   },
-  {
-    initialRouteName: "Home",
-    drawerPosition: "right",
-    hideStatusBar: false,
-    drawerWidth: 250,
-    drawerBackgroundColor: "#FFFFFF",
-    overlayColor: "#C2C2C2"
-  }
+  { headerMode: "none", initialRouteName: "Home" }
 );

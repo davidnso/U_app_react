@@ -9,11 +9,7 @@ export default class NavBar extends Component {
         <View style={styles.iconWrapper}>
           <Image
             style={styles.icon}
-            source={require("../../../resources/img/feedIcon.png")}
-          />
-          <Image
-            style={styles.icon}
-            source={require("../../../resources/img/notificationIcon.png")}
+            source={require("../../../resources/img/homeIcon.png")}
           />
         </View>
       </View>
