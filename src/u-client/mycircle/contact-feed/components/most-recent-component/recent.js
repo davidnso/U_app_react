@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Text, View, Image, Animated } from "react-native";
 import { styles } from "./recent.styles";
-import colors from "../../../../../_styles";
+import colors from "../../../../../../_styles";
 import {
   TouchableHighlight,
   TouchableOpacity,

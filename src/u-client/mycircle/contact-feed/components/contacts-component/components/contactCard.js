@@ -15,7 +15,7 @@ import {
   TextInput
 } from "react-native-gesture-handler";
 import { styles } from "./contactCard.styles";
-import colors from "../../../../../../_styles";
+import colors from "../../../../../../../_styles";
 import LinearGradient from "react-native-linear-gradient";
 
 export default class ContactCard extends Component {

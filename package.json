@@ -7,6 +7,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "axios": "^0.19.0",
     "react": "16.8.3",
     "react-native": "0.59.8",
     "react-native-contacts": "^4.0.2",
@@ -19,6 +20,9 @@
     "react-native-sms-communicator": "file:./sms-communicator",
     "react-native-svg": "^9.5.1",
     "react-navigation": "^3.11.0",
+    "react-redux": "^7.1.0",
+    "redux": "^4.0.4",
+    "redux-axios-middleware": "^4.0.1",
     "rn-sliding-up-panel": "^2.3.0"
   },
   "devDependencies": {

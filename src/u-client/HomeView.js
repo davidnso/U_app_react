@@ -9,6 +9,7 @@ import ContactList from "./mycircle/contact-feed/components/contacts-component/c
 import NavBar from "./components/navbar-component/navBar";
 import FilterBar from "./components/filter-component/filterBar";
 //import NavBar from './components/nav-bar-component/navBar';
+
 export default class HomeView extends Component {
   constructor(props) {
     super(props);

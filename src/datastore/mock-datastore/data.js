@@ -1,7 +1,7 @@
 export const MOCK_STATE = {
-  ...myCircle,
-  ...messageQueue,
-  ...pendingReminders
+  myCircle,
+  messageQueue,
+  pendingReminders
 };
 const myCircle = [
   {
