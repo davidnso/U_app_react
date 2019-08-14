@@ -10,10 +10,14 @@ import {
 import LinearGradient from "react-native-linear-gradient";
 
 export default class Recent extends Component {
+  constructor(props) {
+    super(props);
+  }
   state = {
     sam: {
       isActive: this.props.active
     },
+    componentIsVisible: this.props.componentIsVisible,
     statusBarWidth: new Animated.Value(0),
     messageOpacity: new Animated.Value(0),
     statusOpacity: new Animated.Value(0),
@@ -83,7 +87,10 @@ export default class Recent extends Component {
           <Animated.View
             style={[
               styles.container,
-              { height: this.state.cardHeight, backgroundColor: cardColor }
+              {
+                height: this.state.cardHeight,
+                backgroundColor: cardColor
+              }
             ]}
           >
             <View style={styles.status_image}>

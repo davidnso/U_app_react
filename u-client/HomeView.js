@@ -19,6 +19,7 @@ export default class HomeView extends Component {
   componentDidMount() {
     StatusBar.setHidden(true);
   }
+  removeRecent = () => {};
   renderAlert() {
     if (this.state.messages) {
       return (
@@ -100,7 +101,7 @@ export default class HomeView extends Component {
             >
               Most Recent
             </Text>
-            <Recent active={true} />
+            <Recent active={true} componentIsVisible={true} />
           </View>
           <View
             style={{
