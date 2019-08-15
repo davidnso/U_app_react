@@ -20,9 +20,11 @@ import LinearGradient from "react-native-linear-gradient";
 
 export default class ContactCard extends Component {
   state = {
-    sam: {
-      isActive: this.props.active
-    },
+    isActive: this.props.active,
+    name: this.props.name,
+    message: this.props.message,
+    date: this.props.data,
+    count: this.props.messageCount,
     statusBarWidth: new Animated.Value(0),
     messageOpacity: new Animated.Value(0),
     statusOpacity: new Animated.Value(0),
@@ -41,7 +43,7 @@ export default class ContactCard extends Component {
   }
   animateStatus = () => {
     Animated.timing(this.state.statusBarWidth, {
-      toValue: this.state.sam.isActive ? 85 : 60,
+      toValue: this.state.isActive ? 85 : 60,
       duration: 500
     }).start(() => {
       Animated.timing(this.state.statusOpacity, {
@@ -56,7 +58,7 @@ export default class ContactCard extends Component {
   };
   animateContactCard = () => {
     Animated.timing(this.state.cardHeight, {
-      toValue: this.state.sam.isActive && !this.state.isSelected ? 100 : 80,
+      toValue: this.state.isActive && !this.state.isSelected ? 100 : 80,
       duration: 350
     }).start();
     if (!this.state.isSelected) {
@@ -81,9 +83,9 @@ export default class ContactCard extends Component {
     cardColor = "#FFFF";
     status = "Idle";
     statusBarColor = "#eeeeee";
-    if (this.state.sam.isActive) {
+    if (this.state.isActive) {
       cardColor = "#F2F2F2";
-      status = "1";
+      status = this.state.count;
       statusBarColor = "#0FD3DD";
     }
 
@@ -101,7 +103,7 @@ export default class ContactCard extends Component {
             ]}
           >
             <View style={styles.status_image}>
-              {this.state.sam.isActive && (
+              {this.state.isActive && (
                 <LinearGradient
                   start={{ x: 0, y: 0.75 }}
                   end={{ x: 1, y: 0.25 }}
@@ -124,7 +126,7 @@ export default class ContactCard extends Component {
                   </Animated.Text>
                 </LinearGradient>
               )}
-              {!this.state.sam.isActive && (
+              {!this.state.isActive && (
                 <View
                   style={[styles._status, { backgroundColor: statusBarColor }]}
                 >
@@ -146,10 +148,10 @@ export default class ContactCard extends Component {
 
             <View style={styles.infoWrapper}>
               <View style={styles.heading}>
-                <Text style={styles.name}>Sam</Text>
+                <Text style={styles.name}>{this.state.name}</Text>
               </View>
               <View style={styles.messageContainer}>
-                {this.state.sam.isActive && (
+                {this.state.isActive && (
                   <Animated.Text
                     style={[
                       styles.message,
@@ -157,15 +159,14 @@ export default class ContactCard extends Component {
                     ]}
                   >
                     {" "}
-                    I’m not really tryna do all that work this weekend, it’s
-                    been a hectic week.
+                    {this.state.message}
                   </Animated.Text>
                 )}
               </View>
             </View>
           </Animated.View>
         </TouchableOpacity>
-        {this.state.isSelected && this.state.sam.isActive && (
+        {this.state.isSelected && this.state.isActive && (
           <Animated.View
             style={{
               position: "absolute",

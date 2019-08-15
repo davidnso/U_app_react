@@ -9,9 +9,8 @@ import { AppNavigator } from "./src/on-boarding-module/navigator";
 import { ClientNavigator } from "./src/u-client/navigator";
 import ReactSmsDriver from "react-native-sms-communicator";
 import HomeView from "./src/u-client/HomeView";
-import { createStore } from "redux";
 import { Provider } from "react-redux";
-import { MOCK_STATE } from "./src/datastore/mock-datastore";
+import { store } from "./src/datastore/mock-datastore/index";
 const OnBoardingAppContainer = createAppContainer(AppNavigator);
 const MainAppContainer = createAppContainer(ClientNavigator);
 
@@ -24,10 +23,6 @@ const MainAppContainer = createAppContainer(ClientNavigator);
 //   }
 // })
 
-const reducer = () => {
-  return MOCK_STATE;
-};
-const store = createStore(reducer);
 export default class App extends Component {
   render() {
     return (
