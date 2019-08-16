@@ -4,6 +4,7 @@ import { styles } from "./contactList.styles";
 import ContactCard from "./components/contactCard";
 import { connect } from "react-redux";
 import { fetchMessages } from "../../../../../datastore/actions/fetchMessages";
+import { ScrollView } from "react-native-gesture-handler";
 class ContactList extends Component {
   componentWillMount() {
     this.props.fetchMessages();
@@ -18,15 +19,11 @@ class ContactList extends Component {
       messages.map(message => console.log(message.name));
     }
   };
-  formatContactName = name =>
-    name
-      .split(" ")
-      .slice(0, -1)
-      .join(" ");
+
   renderContactList = () =>
     this.props.contacts.map(contact => {
       console.log("here we are");
-      contact.name = this.formatContactName(contact.name);
+
       return (
         <ContactCard
           active={contact.messageExists}
@@ -48,7 +45,12 @@ class ContactList extends Component {
         </View>
         <Text style={styles.title}> Contacts </Text>
         <Text>{this.props.contacts[0].map}</Text>
-        <View style={styles.listView}>{this.renderContactList()}</View>
+        <ScrollView
+          style={{ height: "100%" }}
+          showsVerticalScrollIndicator={false}
+        >
+          <View style={styles.listView}>{this.renderContactList()}</View>
+        </ScrollView>
       </View>
     );
   }

@@ -39,6 +39,7 @@ export default class ContactCard extends Component {
    * which render simultaneously.
    */
   componentDidMount() {
+    console.log("names", this.props.name);
     this.animateStatus();
   }
   animateStatus = () => {
@@ -85,7 +86,7 @@ export default class ContactCard extends Component {
     statusBarColor = "#eeeeee";
     if (this.state.isActive) {
       cardColor = "#F2F2F2";
-      status = this.state.count;
+      status = this.props.messageCount;
       statusBarColor = "#0FD3DD";
     }
 
@@ -148,7 +149,9 @@ export default class ContactCard extends Component {
 
             <View style={styles.infoWrapper}>
               <View style={styles.heading}>
-                <Text style={styles.name}>{this.state.name}</Text>
+                <Text numberOfLines={1} style={styles.name}>
+                  {this.props.name}
+                </Text>
               </View>
               <View style={styles.messageContainer}>
                 {this.state.isActive && (
@@ -159,7 +162,7 @@ export default class ContactCard extends Component {
                     ]}
                   >
                     {" "}
-                    {this.state.message}
+                    {this.props.message}
                   </Animated.Text>
                 )}
               </View>

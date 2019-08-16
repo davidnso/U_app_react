@@ -7,16 +7,19 @@ import {
   TouchableOpacity,
   TextInput
 } from "react-native-gesture-handler";
+import { connect } from "react-redux";
 import LinearGradient from "react-native-linear-gradient";
 
-export default class Recent extends Component {
+class Recent extends Component {
   constructor(props) {
     super(props);
   }
   state = {
-    sam: {
-      isActive: this.props.active
-    },
+    isActive: this.props.recentContact.messageExists,
+    name: this.props.recentContact.name,
+    message: this.props.recentContact.messages[0].content,
+    date: this.props.recentContact.messages[0].date,
+    imageExists: this.props.recentContact.contactUriExists,
     componentIsVisible: this.props.componentIsVisible,
     statusBarWidth: new Animated.Value(0),
     messageOpacity: new Animated.Value(0),
@@ -36,7 +39,7 @@ export default class Recent extends Component {
   }
   animateStatus = () => {
     Animated.timing(this.state.statusBarWidth, {
-      toValue: this.state.sam.isActive ? 85 : 60,
+      toValue: this.state.isActive ? 85 : 60,
       duration: 500
     }).start(() => {
       Animated.timing(this.state.statusOpacity, {
@@ -51,7 +54,7 @@ export default class Recent extends Component {
   };
   animateContactCard = () => {
     Animated.timing(this.state.cardHeight, {
-      toValue: this.state.sam.isActive && !this.state.isSelected ? 140 : 120,
+      toValue: this.state.isActive && !this.state.isSelected ? 140 : 120,
       duration: 350
     }).start();
     if (!this.state.isSelected) {
@@ -74,7 +77,7 @@ export default class Recent extends Component {
      *
      */
     cardColor = "#FFFF";
-    status = "1";
+    status = this.props.recentContact.messages.length;
     statusBarColor = "#0FD3DD";
 
     return (
@@ -94,7 +97,7 @@ export default class Recent extends Component {
             ]}
           >
             <View style={styles.status_image}>
-              {this.state.sam.isActive && (
+              {this.state.isActive && (
                 <LinearGradient
                   start={{ x: 0, y: 0.75 }}
                   end={{ x: 1, y: 0.25 }}
@@ -117,7 +120,7 @@ export default class Recent extends Component {
                   </Animated.Text>
                 </LinearGradient>
               )}
-              {!this.state.sam.isActive && (
+              {!this.state.isActive && (
                 <View
                   style={[styles._status, { backgroundColor: statusBarColor }]}
                 >
@@ -139,10 +142,10 @@ export default class Recent extends Component {
 
             <View style={styles.infoWrapper}>
               <View style={styles.heading}>
-                <Text style={styles.name}>Sam</Text>
+                <Text style={styles.name}>{this.props.recentContact.name}</Text>
               </View>
               <View style={styles.messageContainer}>
-                {this.state.sam.isActive && (
+                {this.state.isActive && (
                   <Animated.Text
                     style={[
                       styles.message,
@@ -150,15 +153,14 @@ export default class Recent extends Component {
                     ]}
                   >
                     {" "}
-                    I’m not really tryna do all that work this weekend, it’s
-                    been a hectic week.
+                    {this.props.recentContact.messages[0].content}
                   </Animated.Text>
                 )}
               </View>
             </View>
           </Animated.View>
         </TouchableOpacity>
-        {this.state.isSelected && this.state.sam.isActive && (
+        {this.state.isSelected && this.state.isActive && (
           <Animated.View
             style={{
               position: "absolute",
@@ -185,3 +187,32 @@ export default class Recent extends Component {
     );
   }
 }
+// const formatContactName = name => {
+//   return name
+//     .split(" ")
+//     .slice(0, -1)
+//     .join(" ");
+// };
+
+function mapStateToProps(state) {
+  let contacts = state.myCircle;
+  contacts.map(contact => {
+    contact.messages.sort((firstMessage, nextMessage) => {
+      console.log("array sorting...");
+      return nextMessage.date - firstMessage.date;
+    });
+  });
+  console.log("array sorted...");
+  contacts.sort((firstContact, nextContact) => {
+    return nextContact.messages
+      ? nextContact.messages[0].date - firstContact.messages[0].date
+      : null;
+  });
+  console.log(contacts);
+
+  return {
+    recentContact: contacts[0]
+  };
+}
+
+export default connect(mapStateToProps)(Recent);

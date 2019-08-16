@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
   infoWrapper: {
     width: "75%",
     left: 20,
-    marginTop: 5
+    justifyContent: "center"
   },
   heading: {
     width: 100,

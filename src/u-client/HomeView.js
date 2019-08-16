@@ -8,9 +8,10 @@ import ContactCard from "./mycircle/contact-feed/components/contacts-component/c
 import ContactList from "./mycircle/contact-feed/components/contacts-component/contactList";
 import NavBar from "./components/navbar-component/navBar";
 import FilterBar from "./components/filter-component/filterBar";
+import { connect } from "react-redux";
 //import NavBar from './components/nav-bar-component/navBar';
 
-export default class HomeView extends Component {
+class HomeView extends Component {
   constructor(props) {
     super(props);
   }
@@ -41,7 +42,7 @@ export default class HomeView extends Component {
                 backgroundColor: "blue"
               }}
             >
-              <Text>{this.state.messages}</Text>
+              <Text>{this.props.activeMessages}</Text>
             </View>
           </TouchableOpacity>
         </View>
@@ -85,7 +86,7 @@ export default class HomeView extends Component {
                   fontFamily: "roboto"
                 }}
               >
-                3
+                {this.props.activeMessages}
               </Text>
             </View>
           </View>
@@ -215,3 +216,17 @@ export default class HomeView extends Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  let activeMessageCount = 0;
+  state.myCircle.map(contacts => {
+    if (contacts.messageExists && contacts.messages.length > 0) {
+      activeMessageCount++;
+    }
+  });
+  return {
+    activeMessages: activeMessageCount
+  };
+}
+
+export default connect(mapStateToProps)(HomeView);
