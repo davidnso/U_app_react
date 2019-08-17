@@ -7,8 +7,8 @@ import {
   TouchableOpacity,
   ScrollView
 } from "react-native";
-import {Driver} from '../datastore/driver'
-import {AsyncStorage, PermissionsAndroid} from 'react-native';
+import { Driver } from "../datastore/driver";
+import { AsyncStorage, PermissionsAndroid } from "react-native";
 import Contacts from "react-native-contacts";
 import { styles } from "./base-view.styles";
 import { TextInput } from "react-native-gesture-handler";
@@ -17,111 +17,123 @@ export default class ContactScreen extends Component {
   state = {
     contactSelected: 0,
     contacts: [],
-    stage: 'family ',
+    stage: "family ",
     friends: [],
     friends_count: 0,
-    family:[],
-    familyCount:0,
+    family: [],
+    familyCount: 0,
     acquaintances: []
   };
 
   async componentWillMount() {
-    try{
-      await this.checkPermission()
-     }catch(err){
-         console.log(err)
-         alert('Error granting Permissions.' )
-     }
-
+    try {
+      await this.checkPermission();
+    } catch (err) {
+      console.log(err);
+      alert("Error granting Permissions.");
+    }
   }
 
   render() {
     return (
-      <View >
-        <Text style={styles.counterText} > {this.state.stage}
+      <View>
+        <Text style={styles.counterText}>
+          {" "}
+          {this.state.stage}
           {this.state.contactSelected}
         </Text>
         <TextInput style={styles.searchBox}> </TextInput>
-        <ScrollView showsVerticalScrollIndicator={false} style={styles.contactScreenWrapper}>
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          style={styles.contactScreenWrapper}
+        >
           {this.renderList()}
         </ScrollView>
-        <View style={styles.buttonWrapper} >
-        <TouchableOpacity activeOpacity={0.7} onPress={()=> {this.addContactsToList() }} >
+        <View style={styles.buttonWrapper}>
+          <TouchableOpacity
+            activeOpacity={0.7}
+            onPress={() => {
+              this.addContactsToList();
+            }}
+          >
             <RightButton />
-        </TouchableOpacity>
+          </TouchableOpacity>
         </View>
       </View>
     );
   }
-async askForPermissions(){
-  try{
-    const granted = await PermissionsAndroid.request(
-      PermissionsAndroid.PERMISSIONS.READ_CONTACTS,{
-        'title': 'Contacts Permission',
-        'message': 'U app needs access to your contacts'
+  async askForPermissions() {
+    try {
+      const granted = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.READ_CONTACTS,
+        {
+          title: "Contacts Permission",
+          message: "U app needs access to your contacts"
+        }
+      );
+      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+        alert("Thank you!!");
+        return granted;
       }
-    )
-    if(granted === PermissionsAndroid.RESULTS.GRANTED){
-      alert('Thank you!!');
-      return granted
-    }
-  }catch(err){
-
+    } catch (err) {}
   }
-}
 
   getContacts() {
-        Contacts.getAll((err, contact) => {
-          const contactObject = contact.map(x => {
-            console.log(x.phoneNumbers[0]);
-            return { ...x, isVisible: false };
-          });
-          this.setState({ contacts: contactObject });
-          console.log(this.state.contacts[0]);
-        });
+    Contacts.getAll((err, contact) => {
+      const contactObject = contact.map(x => {
+        console.log(x.phoneNumbers[0]);
+        return { ...x, isVisible: false };
+      });
+      this.setState({ contacts: contactObject });
+      console.log(this.state.contacts[0]);
+    });
   }
- async checkPermission() {
-   await Contacts.checkPermission(async(error,result)=>{
-    let decision;
-    if(result === 'denied' || result === 'undefined'){
-     decision = await this.askForPermissions();
-
-    }
-    if(decision === PermissionsAndroid.RESULTS.GRANTED || result === 'authorized'){
-      console.log('DID WE GET PERMISSION' + decision? decision : result);
-      this.getContacts();
-    }
-  })
-
-  }
-
-  addContactsToList(){
-    let friendsList = [];
-    let familyList = []
-    let remainingContacts = [];
-    if(this.state.stage.trimRight()==='friends'){
-
-    this.state.contacts.map(contact=>{
-        if(contact.isVisible === true){
-            friendsList.push(contact)
-        }else{
-            remainingContacts.push(contact);
-        }
-    })
-    this.props.navigation.navigate('StepFive' , {contacts: remainingContacts});
-  }
-  if(this.state.stage.trimRight()==='family'){
-    this.setState({ stage: 'friends '})
-    this.state.contacts.map(contact=>{
-      if(contact.isVisible === true){
-          familyList.push(contact)
-      }else{
-          remainingContacts.push(contact);
+  async checkPermission() {
+    await Contacts.checkPermission(async (error, result) => {
+      let decision;
+      if (result === "denied" || result === "undefined") {
+        decision = await this.askForPermissions();
       }
-  })
+      if (
+        decision === PermissionsAndroid.RESULTS.GRANTED ||
+        result === "authorized"
+      ) {
+        console.log("DID WE GET PERMISSION" + decision ? decision : result);
+        this.getContacts();
+      }
+    });
   }
-    this.setState({contacts:remainingContacts})
 
+  addContactsToList() {
+    let friendsList = [];
+    let familyList = [];
+    let remainingContacts = [];
+    if (this.state.stage.trimRight() === "friends") {
+      this.state.contacts.map(contact => {
+        if (contact.isVisible === true) {
+          friendsList.push(contact);
+        } else {
+          remainingContacts.push(contact);
+        }
+      });
+      /**
+       * when it's time to implement acquaintances, we will navigate to the acquaintance view
+       * a.k.a "stepFive" and have the user select their acquaintance view.
+       */
+      //this.props.navigation.navigate('StepFive' , {contacts: remainingContacts});
+      this.props.navigation.navigate("complete");
+    }
+    if (this.state.stage.trimRight() === "family") {
+      this.setState({ stage: "friends " });
+      this.state.contacts.map(contact => {
+        if (contact.isVisible === true) {
+          familyList.push(contact);
+        } else {
+          remainingContacts.push(contact);
+        }
+      });
+    }
+    this.setState({ contacts: remainingContacts });
   }
   toggleHidden(index) {
     let contact = [...this.state.contacts];
@@ -140,45 +152,43 @@ async askForPermissions(){
     }
     console.log(this.state.contactSelected);
   }
-  async addBulkContactsToStore(contacts){
-    try{
-     contacts.forEach(contact => {
-         //TODO: Create function to parse unnecessary contact information from incoming objects.
-         let sanitizedObject = JSON.stringify(contact)
-         AsyncStorage.setItem(contact.rawContactId, sanitizedObject, (error)=>{
-           if(error){ console.log('Error on bulk add:' + error);}
-         })
-         console.log('contacts successfully YEA\'D BABY')
-     });
+  async addBulkContactsToStore(contacts) {
+    try {
+      contacts.forEach(contact => {
+        //TODO: Create function to parse unnecessary contact information from incoming objects.
+        let sanitizedObject = JSON.stringify(contact);
+        AsyncStorage.setItem(contact.rawContactId, sanitizedObject, error => {
+          if (error) {
+            console.log("Error on bulk add:" + error);
+          }
+        });
+        console.log("contacts successfully YEA'D BABY");
+      });
+    } catch (error) {
+      console.log(error);
     }
-    catch(error){
-     console.log(error);
-    }
- }
+  }
 
   renderList = () =>
     this.state.contacts.map((contact, index) => {
       const phoneNumber = contact.phoneNumbers.map((val, key) => {
         return val.number;
-
       });
 
-      if(contact.hasThumbnail){
-          uriObj = {uri:contact.thumbnailPath}
-      }else{
-          uriObj = require('../../resources/img/profilePlaceHolder.png')
+      if (contact.hasThumbnail) {
+        uriObj = { uri: contact.thumbnailPath };
+      } else {
+        uriObj = require("../../resources/img/profilePlaceHolder.png");
       }
       return (
-        <TouchableOpacity key={contact.rawContactId}
+        <TouchableOpacity
+          key={contact.rawContactId}
           onPress={() => {
             this.toggleHidden(index);
           }}
         >
           <View style={styles.contactCard}>
-            <Image
-              style={styles.image}
-              source={ uriObj}
-            />
+            <Image style={styles.image} source={uriObj} />
             <Text style={styles.contactText}>
               {contact.givenName} {contact.middleName} {contact.familyName}{" "}
             </Text>
@@ -192,5 +202,4 @@ async askForPermissions(){
         </TouchableOpacity>
       );
     });
-
 }
