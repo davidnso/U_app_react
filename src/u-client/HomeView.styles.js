@@ -12,8 +12,10 @@ export const styles = StyleSheet.create({
     top: -40
   },
   screenWrapper: {
-    height: "100%",
-    backgroundColor: "#05A0F1"
+    height: "50%",
+    backgroundColor: "#05A0F1",
+    borderBottomLeftRadius: 30,
+    borderBottomRightRadius: 30
   },
   vectorImage: {
     width: "85%",

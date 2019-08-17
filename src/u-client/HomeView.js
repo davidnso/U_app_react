@@ -51,7 +51,12 @@ class HomeView extends Component {
   }
   render() {
     return (
-      <View>
+      <View
+        style={{
+          backgroundColor: "#F9FBFC",
+          height: "100%"
+        }}
+      >
         <LinearGradient
           style={styles.screenWrapper}
           colors={["#73C1EB", "#5CBBEC", "#30ADEF", "#05A0F1", "#05A0F1"]}
@@ -90,6 +95,7 @@ class HomeView extends Component {
               </Text>
             </View>
           </View>
+
           <View style={{ marginTop: 20, marginLeft: 20 }}>
             <Text
               style={{
@@ -105,113 +111,113 @@ class HomeView extends Component {
             </Text>
             <Recent active={true} componentIsVisible={true} />
           </View>
-          <View
-            style={{
-              backgroundColor: "#F9FBFC",
-              height: "100%",
-              marginTop: 30,
-              borderTopLeftRadius: 30,
-              borderTopRightRadius: 30
-            }}
-          >
-            <View style={{ marginTop: 30 }}>
-              <View
-                style={{
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  width: "75%",
-                  maxWidth: "75%",
-                  alignSelf: "center"
+        </LinearGradient>
+        <View
+          style={{
+            backgroundColor: "#F9FBFC",
+            height: "100%",
+            marginTop: 30,
+            borderTopLeftRadius: 30,
+            borderTopRightRadius: 30
+          }}
+        >
+          <View style={{ marginTop: 30 }}>
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-between",
+                width: "75%",
+                maxWidth: "75%",
+                alignSelf: "center"
+              }}
+            >
+              <TouchableOpacity
+                activeOpacity={0.5}
+                onPress={() => {
+                  this.props.navigation.navigate("Circle");
                 }}
               >
-                <TouchableOpacity
-                  activeOpacity={0.5}
-                  onPress={() => {
-                    this.props.navigation.navigate("Circle");
-                  }}
-                >
-                  <View style={styles.menuOption}>
-                    <Image
-                      style={{ width: 80, height: 80, alignSelf: "center" }}
-                      source={require("../resources/img/My_circle.png")}
-                    />
-                    <Text style={styles.menuText}>My Circle</Text>
-                  </View>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  activeOpacity={0.5}
-                  onPress={() => {
-                    this.props.navigation.navigate("Reminders");
-                  }}
-                >
-                  <View style={styles.menuOption}>
-                    <Image
-                      style={{
-                        width: 45,
-                        height: 45,
-                        alignSelf: "center",
-                        marginTop: 20
-                      }}
-                      source={require("../resources/img/notificationIcon.png")}
-                    />
-                    <Text style={styles.menuText}>Reminders</Text>
-                  </View>
-                </TouchableOpacity>
-              </View>
-            </View>
-            <View style={{ marginTop: 30 }}>
-              <View
-                style={{
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  width: "70%",
-                  maxWidth: "70%",
-                  alignSelf: "center"
+                <View style={styles.menuOption}>
+                  <Image
+                    style={{ width: 80, height: 80, alignSelf: "center" }}
+                    source={require("../resources/img/My_circle.png")}
+                  />
+                  <Text style={styles.menuText}>My Circle</Text>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity
+                activeOpacity={0.5}
+                onPress={() => {
+                  this.props.navigation.navigate("Reminders");
                 }}
               >
-                <TouchableOpacity
-                  activeOpacity={0.5}
-                  onPress={() => {
-                    this.props.navigation.navigate("Preferences");
-                  }}
-                >
-                  <View style={styles.menuOption}>
-                    <Image
-                      style={{
-                        width: 45,
-                        height: 45,
-                        alignSelf: "center",
-                        marginTop: 20
-                      }}
-                      source={require("../resources/img/List.png")}
-                    />
-                    <Text style={styles.menuText}>HouseKeeping</Text>
-                  </View>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  activeOpacity={0.5}
-                  onPress={() => {
-                    this.props.navigation.navigate("Settings");
-                  }}
-                >
-                  <View style={styles.menuOption}>
-                    <Image
-                      style={{
-                        width: 55,
-                        height: 55,
-                        alignSelf: "center",
-                        marginTop: 20
-                      }}
-                      source={require("../resources/img/Settings.png")}
-                    />
-                    <Text style={styles.menuText}>Settings</Text>
-                  </View>
-                </TouchableOpacity>
-              </View>
+                <View style={styles.menuOption}>
+                  <Image
+                    style={{
+                      width: 45,
+                      height: 45,
+                      alignSelf: "center",
+                      marginTop: 20
+                    }}
+                    source={require("../resources/img/notificationIcon.png")}
+                  />
+                  <Text style={styles.menuText}>Reminders</Text>
+                </View>
+              </TouchableOpacity>
             </View>
           </View>
-          <NavBar />
-        </LinearGradient>
+          <View style={{ marginTop: 30 }}>
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-between",
+                width: "70%",
+                maxWidth: "70%",
+                alignSelf: "center"
+              }}
+            >
+              <TouchableOpacity
+                activeOpacity={0.5}
+                onPress={() => {
+                  this.props.navigation.navigate("Preferences");
+                }}
+              >
+                <View style={styles.menuOption}>
+                  <Image
+                    style={{
+                      width: 45,
+                      height: 45,
+                      alignSelf: "center",
+                      marginTop: 20
+                    }}
+                    source={require("../resources/img/List.png")}
+                  />
+                  <Text style={styles.menuText}>HouseKeeping</Text>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity
+                activeOpacity={0.5}
+                onPress={() => {
+                  this.props.navigation.navigate("Settings");
+                }}
+              >
+                <View style={styles.menuOption}>
+                  <Image
+                    style={{
+                      width: 55,
+                      height: 55,
+                      alignSelf: "center",
+                      marginTop: 20
+                    }}
+                    source={require("../resources/img/Settings.png")}
+                  />
+                  <Text style={styles.menuText}>Settings</Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+        <NavBar />
       </View>
     );
   }

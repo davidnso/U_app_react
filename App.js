@@ -25,9 +25,10 @@ const MainAppContainer = createAppContainer(ClientNavigator);
 
 export default class App extends Component {
   render() {
+    //switch to main app container when ready.
     return (
       <Provider store={store}>
-        <MainAppContainer />
+        <OnBoardingAppContainer />
       </Provider>
     );
   }
